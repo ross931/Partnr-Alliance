@@ -1,878 +1,538 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Partnr — The Partner CRM Built for Alliance Managers</title>
-<meta name="description" content="Track programs, certifications, and partner activities that drive revenue — before deals close. Built for alliance managers at Series A/B startups.">
-<meta property="og:title" content="Partnr — The Partner CRM">
-<meta property="og:description" content="Alliance managers finally have a home. Stop tracking partnerships in spreadsheets.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --bg:#080b0f;--bg2:#0e1116;--bg3:#131820;--bg4:#181f28;
-  --brd:rgba(255,255,255,.07);--brdh:rgba(255,255,255,.14);
-  --amber:#d4891a;--amberhi:#f0a830;--amblo:rgba(212,137,26,.12);
-  --tx:#e6e2d8;--mu:#8a8680;--mu2:#4e4c48;
-  --serif:'Instrument Serif',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;
-  --r:8px;--rl:12px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--tx);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partnr — Alliance Intelligence Platform</title>
+  <meta name="description" content="Partnr tracks the certifications, programs, and joint activities that drive partnership revenue — so you can prove your value long before deals close." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;background:rgba(8,11,15,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--brd);transition:border-color .3s}
-.logo{font-family:var(--serif);font-size:1.25rem;color:var(--tx);text-decoration:none;letter-spacing:-.02em}
-.logo em{color:var(--amber);font-style:italic}
-.nav-r{display:flex;align-items:center;gap:1.5rem}
-.nav-r a{color:var(--mu);font-size:.875rem;text-decoration:none;transition:color .2s}
-.nav-r a:hover{color:var(--tx)}
-.nav-cta{background:var(--amber) !important;color:#080b0f !important;font-weight:500 !important;padding:.4rem 1.1rem !important;border-radius:6px !important;transition:background .2s,transform .15s !important}
-.nav-cta:hover{background:var(--amberhi) !important;transform:translateY(-1px) !important}
-@media(max-width:600px){.nav-r a:not(.nav-cta){display:none}}
+    :root {
+      --navy: #0F172A;
+      --navy-mid: #111827;
+      --navy-light: #1E293B;
+      --blue: #2E75B6;
+      --blue-light: #3B82F6;
+      --amber: #D4913A;
+      --amber-light: #F59E0B;
+      --text: #F1F5F9;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --border: #1E293B;
+      --border-light: #334155;
+      --green: #16A34A;
+      --red: #DC2626;
+      --orange: #D97706;
+    }
 
-/* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 1.5rem 5rem;position:relative;overflow:hidden}
-.hero-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:1000px;height:700px;background:radial-gradient(ellipse at 50% 30%,rgba(212,137,26,.08) 0%,transparent 65%);pointer-events:none}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,black,transparent);pointer-events:none}
-.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,137,26,.1);border:1px solid rgba(212,137,26,.2);color:var(--amberhi);font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:.35rem 1rem;border-radius:100px;margin-bottom:2.25rem;position:relative;z-index:1;animation:up .5s ease both}
-.pulse{width:6px;height:6px;background:var(--amber);border-radius:50%;flex-shrink:0;animation:pulse 2s ease-in-out infinite}
-h1{font-family:var(--serif);font-size:clamp(2.6rem,6.5vw,5rem);line-height:1.06;letter-spacing:-.03em;max-width:12ch;margin-bottom:1.5rem;position:relative;z-index:1;animation:up .5s .1s ease both}
-h1 em{font-style:italic;color:var(--amber)}
-.hero-sub{font-size:clamp(.95rem,2vw,1.12rem);color:var(--mu);max-width:50ch;line-height:1.76;font-weight:300;position:relative;z-index:1;animation:up .5s .2s ease both}
-.hero-sub b{color:var(--tx);font-weight:400}
-.hero-act{display:flex;align-items:center;gap:.875rem;margin-top:2.25rem;flex-wrap:wrap;justify-content:center;position:relative;z-index:1;animation:up .5s .3s ease both}
-.btn-big{background:var(--amber);color:#080b0f;font-family:var(--sans);font-size:1rem;font-weight:500;padding:.78rem 2rem;border-radius:8px;text-decoration:none;border:none;cursor:pointer;transition:background .2s,transform .15s,box-shadow .2s;display:inline-flex;align-items:center;gap:.5rem}
-.btn-big:hover{background:var(--amberhi);transform:translateY(-2px);box-shadow:0 10px 32px rgba(212,137,26,.3)}
-.btn-ghost{color:var(--mu);font-size:.9rem;text-decoration:none;display:flex;align-items:center;gap:.4rem;transition:color .2s}
-.btn-ghost:hover{color:var(--tx)}
-.hero-note{font-size:.75rem;color:var(--mu2);margin-top:.75rem;position:relative;z-index:1;animation:up .5s .4s ease both}
+    html { scroll-behavior: smooth; }
 
-/* PROOF BAR */
-.proof{background:var(--bg3);border-top:1px solid var(--brd);border-bottom:1px solid var(--brd);padding:.875rem 2rem}
-.proof-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap}
-.proof-item{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:var(--mu2)}
-.proof-item b{color:var(--mu);font-weight:400}
+    body {
+      background: var(--navy);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-/* SECTIONS */
-section{padding:5.5rem 1.5rem}
-.wrap{max-width:1060px;margin:0 auto}
-.eyebrow{font-size:.72rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:.875rem}
-h2{font-family:var(--serif);font-size:clamp(1.85rem,4vw,2.7rem);line-height:1.1;letter-spacing:-.025em;margin-bottom:.875rem}
-h2 em{font-style:italic;color:var(--amber)}
-.lead{color:var(--mu);font-size:1rem;font-weight:300;max-width:52ch;line-height:1.75}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
-.reveal.in{opacity:1;transform:none}
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 64px;
+      background: rgba(15,23,42,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 1.1rem; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--blue); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta { background: var(--blue); color: white; padding: 0.5rem 1.25rem; border-radius: 8px; font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: #1F4E79; }
 
-/* PROBLEM */
-.prob{background:var(--bg)}
-.prob-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem}
-@media(max-width:760px){.prob-layout{grid-template-columns:1fr;gap:2.5rem}}
-.prob-points{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
-.prob-pt{display:flex;align-items:flex-start;gap:.875rem;padding:1.1rem 1.25rem;background:var(--bg2);border:1px solid var(--brd);border-radius:var(--rl);transition:border-color .2s}
-.prob-pt:hover{border-color:var(--brdh)}
-.prob-ico{width:34px;height:34px;flex-shrink:0;background:var(--amblo);border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:.95rem}
-.prob-pt h3{font-size:.875rem;font-weight:500;margin-bottom:.25rem}
-.prob-pt p{font-size:.8rem;color:var(--mu);line-height:1.55}
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 8rem 2rem 6rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(46,117,182,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(212,145,58,0.1); border: 1px solid rgba(212,145,58,0.25);
+      color: var(--amber); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 2rem;
+    }
+    .hero-badge::before { content: '●'; font-size: 0.5rem; }
+    h1 {
+      font-family: 'Instrument Serif', serif; font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 1.1; letter-spacing: -0.02em; color: var(--text);
+      max-width: 900px; margin-bottom: 1.5rem;
+    }
+    h1 em { font-style: italic; color: var(--amber); }
+    .hero-sub {
+      font-size: 1.125rem; color: var(--text-muted); max-width: 560px; margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-sub strong { color: var(--text); }
+    .hero-buttons { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1rem; }
+    .btn-primary {
+      background: var(--amber); color: #0F172A; padding: 0.85rem 2rem;
+      border-radius: 10px; font-weight: 600; font-size: 1rem; text-decoration: none;
+      transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem;
+    }
+    .btn-primary:hover { background: var(--amber-light); transform: translateY(-1px); }
+    .btn-secondary {
+      color: var(--text-muted); font-size: 1rem; text-decoration: none;
+      transition: color 0.2s; display: inline-flex; align-items: center; gap: 0.4rem;
+    }
+    .btn-secondary:hover { color: var(--text); }
+    .hero-meta { font-size: 0.8rem; color: var(--text-dim); }
 
-/* Excel chaos visual */
-.chaos-box{background:var(--bg2);border:1px solid var(--brd);border-radius:var(--rl);overflow:hidden}
-.chaos-head{background:var(--bg3);border-bottom:1px solid var(--brd);padding:.6rem 1rem;display:flex;align-items:center;gap:.5rem}
-.chaos-title{font-size:.72rem;color:var(--mu2);flex:1}
-.chaos-tabs{display:flex;gap:2px;overflow:hidden}
-.ctab{font-size:.62rem;padding:.2rem .5rem;background:var(--bg4);border:1px solid var(--brd);border-radius:3px 3px 0 0;color:var(--mu2);white-space:nowrap}
-.ctab.active{background:var(--bg2);color:var(--mu);border-bottom-color:var(--bg2)}
-.chaos-body{padding:.875rem}
-.chaos-row{display:flex;align-items:center;gap:.5rem;padding:.35rem 0;border-bottom:1px solid var(--brd);font-size:.72rem}
-.chaos-row:last-child{border-bottom:none}
-.chaos-col1{width:90px;flex-shrink:0;color:var(--mu2);font-size:.65rem;text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
-.chaos-col2{flex:1;color:var(--mu)}
-.chaos-col3{font-size:.65rem;font-weight:500;padding:.1rem .4rem;border-radius:3px;white-space:nowrap}
-.red-tag{background:rgba(192,80,64,.15);color:#e07060}
-.unk-tag{background:rgba(255,255,255,.04);color:var(--mu2)}
-.ok-tag{background:rgba(61,158,106,.12);color:#5dc48a}
+    /* PROBLEM STRIP */
+    .problem-strip {
+      background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem; text-align: center;
+    }
+    .problem-strip p { color: var(--text-muted); font-size: 0.95rem; max-width: 700px; margin: 0 auto; }
+    .problem-strip strong { color: var(--text); }
 
-/* DEMO */
-.demo{background:var(--bg3)}
-.demo-tabs{display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
-.dtab{background:transparent;border:1px solid var(--brd);color:var(--mu);padding:.4rem .875rem;border-radius:6px;cursor:pointer;font-size:.8rem;transition:all .15s;font-family:var(--sans)}
-.dtab.on{background:var(--amblo);border-color:rgba(212,137,26,.3);color:var(--amberhi)}
-.dpanel{display:none}.dpanel.on{display:block}
+    /* SECTIONS */
+    section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 1rem; }
+    h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    h2 em { font-style: italic; color: var(--amber); }
+    .section-sub { color: var(--text-muted); font-size: 1.05rem; max-width: 560px; line-height: 1.7; margin-bottom: 3rem; }
 
-/* App mockup */
-.app-frame{background:var(--bg2);border:1px solid var(--brd);border-radius:var(--rl);overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45)}
-.app-bar{background:var(--bg3);border-bottom:1px solid var(--brd);padding:.55rem 1rem;display:flex;align-items:center;gap:.5rem}
-.wd{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.app-url{flex:1;background:var(--bg4);border-radius:4px;padding:.18rem .75rem;font-size:.68rem;color:var(--mu2);margin:0 .875rem;text-align:center}
-.app-shell{display:flex;height:420px}
-.app-sb{width:172px;flex-shrink:0;background:var(--bg3);border-right:1px solid var(--brd);padding:.625rem;display:flex;flex-direction:column;gap:2px}
-.sb-logo{font-family:var(--serif);font-size:1.05rem;padding:.4rem .375rem .875rem;color:var(--tx)}
-.sb-logo em{color:var(--amber);font-style:italic}
-.sbi{display:flex;align-items:center;gap:.5rem;padding:.4rem .375rem;border-radius:6px;font-size:.75rem;color:var(--mu);cursor:default}
-.sbi.on{background:var(--amblo);color:var(--amberhi)}
-.app-main{flex:1;padding:1.1rem;overflow:hidden}
-.page-h{font-family:var(--serif);font-size:1.2rem;letter-spacing:-.02em;margin-bottom:1rem}
+    /* THREE PILLARS */
+    .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .pillar {
+      background: var(--navy-mid); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem; transition: border-color 0.2s;
+    }
+    .pillar:hover { border-color: var(--border-light); }
+    .pillar-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1rem; }
+    .pillar-build .pillar-icon { background: rgba(59,130,246,0.15); }
+    .pillar-market .pillar-icon { background: rgba(139,92,246,0.15); }
+    .pillar-sell .pillar-icon { background: rgba(16,185,129,0.15); }
+    .pillar h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .pillar-build h3 { color: #3B82F6; }
+    .pillar-market h3 { color: #8B5CF6; }
+    .pillar-sell h3 { color: #10B981; }
+    .pillar p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+    .pillar ul { list-style: none; margin-top: 1rem; space-y: 0.5rem; }
+    .pillar ul li { font-size: 0.85rem; color: var(--text-dim); padding: 0.25rem 0; border-top: 1px solid var(--border); }
+    .pillar ul li::before { content: '→ '; color: var(--border-light); }
 
-/* KPIs */
-.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:.625rem;margin-bottom:1rem}
-.kpi{background:var(--bg3);border:1px solid var(--brd);border-radius:var(--r);padding:.75rem}
-.kpi-n{font-family:var(--serif);font-size:1.5rem;line-height:1;margin-bottom:.2rem}
-.kpi-l{font-size:.62rem;color:var(--mu2);text-transform:uppercase;letter-spacing:.05em;font-weight:500}
-.kpi.hi{border-color:rgba(212,137,26,.22);background:linear-gradient(135deg,var(--bg3),rgba(212,137,26,.04))}
+    /* PROBLEM / SOLUTION */
+    .ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+    .problem-list { display: flex; flex-direction: column; gap: 1rem; }
+    .problem-item {
+      background: rgba(220,38,38,0.05); border: 1px solid rgba(220,38,38,0.15);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+    }
+    .problem-item h4 { font-size: 0.9rem; font-weight: 600; color: #F87171; margin-bottom: 0.25rem; }
+    .problem-item p { font-size: 0.85rem; color: var(--text-muted); }
+    .solution-list { display: flex; flex-direction: column; gap: 1rem; }
+    .solution-item {
+      background: rgba(22,163,74,0.05); border: 1px solid rgba(22,163,74,0.15);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+    }
+    .solution-item h4 { font-size: 0.9rem; font-weight: 600; color: #4ADE80; margin-bottom: 0.25rem; }
+    .solution-item p { font-size: 0.85rem; color: var(--text-muted); }
 
-/* Partner rows */
-.prows{display:flex;flex-direction:column;gap:.4rem}
-.prow{display:flex;align-items:center;gap:.625rem;padding:.6rem .75rem;background:var(--bg3);border:1px solid var(--brd);border-radius:var(--r)}
-.pav{width:26px;height:26px;border-radius:6px;background:var(--amblo);display:flex;align-items:center;justify-content:center;font-size:.7rem;color:var(--amberhi);font-weight:500;flex-shrink:0}
-.prow-name{font-size:.78rem;font-weight:500;flex:1}
-.prow-meta{font-size:.65rem;color:var(--mu2)}
-.bdg{display:inline-flex;padding:.12rem .45rem;border-radius:3px;font-size:.62rem;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
-.b-active{background:rgba(61,158,106,.12);color:#5dc48a;border:1px solid rgba(61,158,106,.2)}
-.b-ob{background:var(--amblo);color:var(--amberhi);border:1px solid rgba(212,137,26,.2)}
-.b-build{background:rgba(0,180,180,.08);color:#4ecece;border:1px solid rgba(0,180,180,.18)}
-.b-market{background:rgba(200,100,200,.08);color:#d88ad8;border:1px solid rgba(200,100,200,.18)}
-.b-sell{background:var(--amblo);color:var(--amberhi);border:1px solid rgba(212,137,26,.2)}
+    /* AHI EXPLAINER */
+    .ahi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .ahi-card {
+      background: var(--navy-mid); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem;
+    }
+    .ahi-score { font-size: 2.5rem; font-weight: 700; line-height: 1; margin-bottom: 0.25rem; }
+    .ahi-label { font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+    .ahi-bar-wrap { margin-bottom: 0.75rem; }
+    .ahi-bar-label { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+    .ahi-bar { height: 4px; background: var(--navy-light); border-radius: 2px; overflow: hidden; }
+    .ahi-bar-fill { height: 100%; border-radius: 2px; }
 
-/* Kanban */
-.kanban{display:grid;grid-template-columns:repeat(5,1fr);gap:.4rem;height:300px}
-.kcol{display:flex;flex-direction:column;gap:.35rem}
-.kch{padding:.35rem .4rem;background:var(--bg3);border:1px solid var(--brd);border-radius:5px;font-size:.6rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);display:flex;justify-content:space-between;align-items:center}
-.kc{background:var(--bg3);border:1px solid var(--brd);border-radius:5px;padding:.5rem;font-size:.68rem}
-.kc-name{font-weight:500;margin-bottom:.25rem;line-height:1.3}
-.kc-bar{height:2px;background:var(--brd);border-radius:1px;overflow:hidden;margin-top:.3rem}
-.kc-fill{height:100%;background:var(--amber);border-radius:1px}
-.kc-pct{font-size:.6rem;color:var(--mu2);margin-top:.2rem}
+    /* WHO IT'S FOR */
+    .personas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .persona {
+      background: var(--navy-mid); border: 1px solid var(--border); border-radius: 16px; padding: 2rem;
+    }
+    .persona-role { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue-light); margin-bottom: 0.5rem; }
+    .persona h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .persona p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .persona-wins { display: flex; flex-direction: column; gap: 0.5rem; }
+    .persona-win { font-size: 0.85rem; color: var(--text-muted); padding-left: 1rem; position: relative; }
+    .persona-win::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 600; }
 
-/* Activity feed */
-.acts{display:flex;flex-direction:column;gap:.4rem}
-.act{display:flex;align-items:flex-start;gap:.625rem;padding:.625rem .75rem;background:var(--bg3);border:1px solid var(--brd);border-radius:var(--r)}
-.act-type{font-size:.62rem;font-weight:500;text-transform:uppercase;letter-spacing:.04em;padding:.12rem .45rem;border-radius:3px;background:var(--amblo);color:var(--amberhi);flex-shrink:0;white-space:nowrap}
-.act-out{font-size:.75rem;font-weight:500;flex:1}
-.act-meta{font-size:.65rem;color:var(--mu2)}
+    /* FEATURES */
+    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .feature { padding: 0.5rem; }
+    .feature-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .feature h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .feature p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
 
-.demo-cap{font-size:.82rem;color:var(--mu);line-height:1.65;margin-top:1rem}
-.demo-cap b{color:var(--tx);font-weight:400}
+    /* ICP */
+    .icp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .icp-item {
+      background: var(--navy-mid); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;
+      text-align: center;
+    }
+    .icp-item .icp-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+    .icp-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .icp-item p { font-size: 0.82rem; color: var(--text-muted); }
 
-/* HOW IT WORKS */
-.how{background:var(--bg)}
-.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
-@media(max-width:680px){.how-steps{grid-template-columns:1fr}}
-.step{background:var(--bg2);border:1px solid var(--brd);border-radius:var(--rl);padding:1.75rem;position:relative;overflow:hidden;transition:border-color .25s,transform .25s}
-.step:hover{border-color:var(--brdh);transform:translateY(-2px)}
-.step-n{font-family:var(--serif);font-style:italic;font-size:2.8rem;line-height:1;color:var(--brd);margin-bottom:1rem}
-.step h3{font-size:.95rem;font-weight:500;margin-bottom:.5rem}
-.step p{font-size:.82rem;color:var(--mu);line-height:1.65}
-.step::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .35s}
-.step:hover::after{transform:scaleX(1)}
+    /* CTA */
+    .cta-section {
+      text-align: center; padding: 8rem 2rem;
+      background: linear-gradient(180deg, transparent 0%, rgba(46,117,182,0.06) 50%, transparent 100%);
+    }
+    .cta-section h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
+    .cta-section p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
 
-/* FRAMEWORK */
-.fw{background:var(--bg3)}
-.fw-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem}
-@media(max-width:680px){.fw-grid{grid-template-columns:1fr}}
-.fwc{background:var(--bg2);border:1px solid var(--brd);border-radius:var(--rl);padding:1.5rem;transition:border-color .25s,transform .25s}
-.fwc:hover{border-color:var(--brdh);transform:translateY(-2px)}
-.fwc-ico{font-size:1.4rem;margin-bottom:.875rem}
-.fwc-lbl{font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:.4rem}
-.fwc h3{font-size:.95rem;font-weight:500;margin-bottom:.5rem}
-.fwc p{font-size:.82rem;color:var(--mu);line-height:1.62}
-.fwc-who{font-size:.72rem;color:var(--mu2);margin-top:.875rem;padding-top:.75rem;border-top:1px solid var(--brd)}
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border); padding: 2rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      color: var(--text-dim); font-size: 0.8rem;
+    }
+    footer a { color: var(--text-dim); text-decoration: none; }
+    footer a:hover { color: var(--text-muted); }
 
-/* PRICING */
-.pricing{background:var(--bg)}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:3rem;align-items:start}
-@media(max-width:760px){.pricing-grid{grid-template-columns:1fr;max-width:360px;margin-left:auto;margin-right:auto}}
-.pcard{background:var(--bg2);border:1px solid var(--brd);border-radius:var(--rl);padding:1.75rem;position:relative;overflow:hidden}
-.pcard.feat{border-color:rgba(212,137,26,.38);background:linear-gradient(155deg,var(--bg2),rgba(212,137,26,.04))}
-.pcard.feat::before{content:'Most popular';position:absolute;top:0;left:50%;transform:translateX(-50%);background:var(--amber);color:#080b0f;font-size:.65rem;font-weight:500;padding:.22rem 1rem;border-radius:0 0 6px 6px;letter-spacing:.05em;white-space:nowrap}
-.ptier{font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--mu2);margin-bottom:.75rem}
-.pfeat .ptier{margin-top:.875rem}
-.pamount{font-family:var(--serif);font-size:2.4rem;line-height:1;margin-bottom:.2rem}
-.pamount span{font-size:.95rem;font-family:var(--sans);font-weight:300;color:var(--mu)}
-.pper{font-size:.75rem;color:var(--mu2);margin-bottom:1.25rem}
-.pdesc{font-size:.82rem;color:var(--mu);margin-bottom:1.25rem;line-height:1.62;min-height:40px}
-.pfeats{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.5rem}
-.pfeats li{font-size:.8rem;color:var(--mu);display:flex;gap:.55rem;align-items:baseline;line-height:1.45}
-.pfeats li::before{content:'✓';color:var(--amber);font-size:.72rem;flex-shrink:0}
-.pcta{display:block;width:100%;text-align:center;padding:.62rem;border-radius:var(--r);font-family:var(--sans);font-size:.875rem;font-weight:500;text-decoration:none;cursor:pointer;border:none;transition:all .2s}
-.pcta.pri{background:var(--amber);color:#080b0f}
-.pcta.pri:hover{background:var(--amberhi);transform:translateY(-1px);box-shadow:0 6px 20px rgba(212,137,26,.25)}
-.pcta.sec{background:transparent;color:var(--tx);border:1px solid var(--brd)}
-.pcta.sec:hover{border-color:var(--brdh);background:var(--bg3)}
-.pnote{font-size:.7rem;color:var(--mu2);text-align:center;margin-top:.55rem}
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
 
-/* FAQ */
-.faq{background:var(--bg3)}
-.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem}
-@media(max-width:680px){.faq-grid{grid-template-columns:1fr}}
-.fq{background:var(--bg2);border:1px solid var(--brd);border-radius:var(--rl);padding:1.4rem;cursor:pointer;transition:border-color .2s}
-.fq:hover{border-color:var(--brdh)}
-.fq-q{font-size:.875rem;font-weight:500;display:flex;justify-content:space-between;align-items:flex-start;gap:.75rem;margin-bottom:0}
-.fq-q span{color:var(--amber);font-size:.8rem;flex-shrink:0;transition:transform .2s;margin-top:2px}
-.fq-a{font-size:.82rem;color:var(--mu);line-height:1.65;display:none;margin-top:.75rem}
-.fq.open .fq-a{display:block}
-.fq.open .fq-q span{transform:rotate(45deg)}
+    @media (max-width: 768px) {
+      .pillars, .ahi-grid, .personas, .features, .icp-grid { grid-template-columns: 1fr; }
+      .ps-grid { grid-template-columns: 1fr; }
+      nav { padding: 0 1.25rem; }
+      .nav-links { gap: 1rem; }
+      section { padding: 4rem 1.25rem; }
+    }
 
-/* FINAL CTA */
-.final{background:var(--bg);text-align:center;border-top:1px solid var(--brd);padding:6rem 1.5rem;position:relative;overflow:hidden}
-.final::before{content:'';position:absolute;bottom:-120px;left:50%;transform:translateX(-50%);width:800px;height:600px;background:radial-gradient(ellipse,rgba(212,137,26,.07) 0%,transparent 65%);pointer-events:none}
-.final h2{max-width:14ch;margin:0 auto 1rem;position:relative;z-index:1}
-.final .lead{margin:0 auto 2.5rem;text-align:center;position:relative;z-index:1}
-.signup-box{position:relative;z-index:1}
-.signup-row{display:flex;gap:.625rem;justify-content:center;flex-wrap:wrap;margin-bottom:.75rem}
-.signup-input{background:var(--bg2);border:1px solid var(--brdh);border-radius:var(--r);padding:.68rem 1.1rem;color:var(--tx);font-family:var(--sans);font-size:.95rem;outline:none;transition:border-color .2s;width:240px}
-.signup-input:focus{border-color:var(--amber)}
-.signup-input::placeholder{color:var(--mu2)}
-.final-note{font-size:.75rem;color:var(--mu2)}
-.trust-row{display:flex;align-items:center;justify-content:center;gap:2rem;margin-top:3.5rem;flex-wrap:wrap;position:relative;z-index:1}
-.trust-item{font-size:.78rem;color:var(--mu2);display:flex;align-items:center;gap:.4rem}
-
-footer{padding:1.75rem 2rem;border-top:1px solid var(--brd);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--bg2)}
-footer p{font-size:.78rem;color:var(--mu2)}
-footer nav{display:flex;gap:1.5rem}
-footer nav a{font-size:.78rem;color:var(--mu2);text-decoration:none;transition:color .2s}
-footer nav a:hover{color:var(--mu)}
-
-@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.72)}}
-</style>
+    @media (max-width: 768px) {
+      .video-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav">
-  <a href="#" class="logo">Part<em>n</em>r</a>
-  <div class="nav-r">
-    <a href="#how">How it works</a>
-    <a href="#pricing">Pricing</a>
-    <a href="https://app.getpartnr.co/login" class="nav-cta">Sign up free</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-grid"></div>
-  <div class="badge"><span class="pulse"></span>Private beta — design partners open</div>
-  <h1>Partnerships run on <em>more</em> than pipeline</h1>
-  <p class="hero-sub">
-    <b>Revenue is a lagging indicator.</b> Partnr tracks the certifications, programs, and joint activities that drive it — so you can prove your value long before deals close.
-  </p>
-  <div class="hero-act">
-    <a href="https://app.getpartnr.co/login" class="btn-big">
-      Start free →
-    </a>
-    <a href="#demo" class="btn-ghost">See it in action</a>
-  </div>
-  <p class="hero-note">No credit card required · 5-minute setup · Cancel anytime</p>
-</div>
-
-<!-- PROOF BAR -->
-<div class="proof">
-  <div class="proof-inner">
-    <div class="proof-item">☁️ <b>AWS, Azure & GCP programs</b></div>
-    <div class="proof-item">⚙️ <b>Built on Supabase + Stripe</b></div>
-    <div class="proof-item">🔒 <b>SOC 2 ready architecture</b></div>
-    <div class="proof-item">🚀 <b>Series A/B focused</b></div>
-  </div>
-</div>
-
-<!-- PROBLEM -->
-<section class="prob" id="problem">
-  <div class="wrap">
-    <div class="prob-layout">
-      <div>
-        <p class="eyebrow reveal">The problem</p>
-        <h2 class="reveal">You manage programs. Your tools only see <em>deals</em>.</h2>
-        <p class="lead reveal" style="margin-bottom:0">Alliance managers juggle certifications, MDF credits, SI hierarchies, joint content, and technical integrations. None of that lives anywhere structured.</p>
-        <div class="prob-points reveal">
-          <div class="prob-pt">
-            <div class="prob-ico">📋</div>
-            <div>
-              <h3>Programs have no home</h3>
-              <p>Certifications, marketplace listings, co-marketing programs — these are what you actually manage. No tool tracks them with lifecycle stages and milestone checklists.</p>
-            </div>
-          </div>
-          <div class="prob-pt">
-            <div class="prob-ico">🏗️</div>
-            <div>
-              <h3>Multi-tier hierarchies get lost</h3>
-              <p>"AWS referred this deal through Trace Three" requires three linked entities simultaneously. That's native in Partnr. Everywhere else it's a workaround.</p>
-            </div>
-          </div>
-          <div class="prob-pt">
-            <div class="prob-ico">📊</div>
-            <div>
-              <h3>You can't prove value before revenue</h3>
-              <p>There's a 3–6 month window before deals close where your work is invisible to leadership. Partnr auto-generates the weekly snapshot that fixes that.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Excel chaos visual -->
-      <div class="reveal">
-        <div class="chaos-box">
-          <div class="chaos-head">
-            <div class="chaos-title">Partnership_Tracker_FINAL_v3.xlsx</div>
-          </div>
-          <div style="display:flex;gap:2px;padding:.4rem .6rem .3rem;background:var(--bg3);border-bottom:1px solid var(--brd);overflow:hidden">
-            <div class="ctab active">AWS Certs</div>
-            <div class="ctab">MDF Q2</div>
-            <div class="ctab">SI Map</div>
-            <div class="ctab">Content</div>
-            <div class="ctab">Co-Sell</div>
-            <div class="ctab" style="color:var(--mu2);font-size:.6rem">+9 more</div>
-          </div>
-          <div class="chaos-body">
-            <div class="chaos-row" style="font-size:.65rem;color:var(--mu2);margin-bottom:.25rem">
-              <div style="width:90px">Program</div><div style="flex:1">Status</div><div style="width:60px">Updated</div>
-            </div>
-            <div class="chaos-row">
-              <div class="chaos-col1">AI Competency</div>
-              <div class="chaos-col2">4/5 certs done — waiting on Sarah??</div>
-              <div class="chaos-col3 red-tag">3wk ago</div>
-            </div>
-            <div class="chaos-row">
-              <div class="chaos-col1">ISV Accelerate</div>
-              <div class="chaos-col2">Applied — no response yet, check partner portal</div>
-              <div class="chaos-col3 unk-tag">Unknown</div>
-            </div>
-            <div class="chaos-row">
-              <div class="chaos-col1">MDF $25k</div>
-              <div class="chaos-col2">APPROVED (see email from Mike 4/3)</div>
-              <div class="chaos-col3 ok-tag">Done</div>
-            </div>
-            <div class="chaos-row">
-              <div class="chaos-col1">Trace Three</div>
-              <div class="chaos-col2">Sub-partner of AWS? Or direct? CHECK THIS</div>
-              <div class="chaos-col3 red-tag">Unclear</div>
-            </div>
-            <div class="chaos-row">
-              <div class="chaos-col1">Case Study</div>
-              <div class="chaos-col2">In Notion somewhere — ask marketing</div>
-              <div class="chaos-col3 unk-tag">?</div>
-            </div>
-          </div>
-          <div style="padding:.6rem 1rem;background:var(--bg3);border-top:1px solid var(--brd);font-size:.68rem;color:var(--mu2);display:flex;align-items:center;gap:.5rem">
-            <span style="color:#c05040">●</span> This is everyone's system of record. It shouldn't be.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRODUCT DEMO -->
-<section class="demo" id="demo">
-  <div class="wrap">
-    <p class="eyebrow reveal">Product walkthrough</p>
-    <h2 class="reveal">Built for how alliances <em>actually</em> work</h2>
-    <p class="lead reveal">Three views. All the visibility you need.</p>
-
-    <div style="margin-top:2.5rem" class="reveal">
-      <div class="demo-tabs">
-        <button class="dtab on" onclick="showPanel('partners',this)">🏢 Partners</button>
-        <button class="dtab" onclick="showPanel('programs',this)">📋 Programs</button>
-        <button class="dtab" onclick="showPanel('activities',this)">⚡ Activities</button>
-        <button class="dtab" onclick="showPanel('dashboard',this)">⬡ Dashboard</button>
-      </div>
-
-      <!-- PARTNERS PANEL -->
-      <div class="dpanel on" id="panel-partners">
-        <div class="app-frame">
-          <div class="app-bar">
-            <div class="wd" style="background:#ff5f56"></div>
-            <div class="wd" style="background:#ffbd2e"></div>
-            <div class="wd" style="background:#27c93f"></div>
-            <div class="app-url">app.getpartnr.co/partners</div>
-          </div>
-          <div class="app-shell">
-            <div class="app-sb">
-              <div class="sb-logo">Part<em>n</em>r</div>
-              <div class="sbi">⬡ Dashboard</div>
-              <div class="sbi on">🏢 Partners</div>
-              <div class="sbi">📋 Programs</div>
-              <div class="sbi">⚡ Activities</div>
-            </div>
-            <div class="app-main">
-              <div class="page-h">Partners</div>
-              <div class="prows">
-                <div class="prow">
-                  <div class="pav">A</div>
-                  <div style="flex:1">
-                    <div class="prow-name">Amazon Web Services</div>
-                    <div class="prow-meta">Primary · Technology Partner</div>
-                  </div>
-                  <span class="bdg b-active">Active</span>
-                </div>
-                <div class="prow" style="margin-left:1.5rem;border-left:2px solid var(--amber);padding-left:.75rem">
-                  <div class="pav" style="background:rgba(100,80,200,.2);color:#9a8adc">T</div>
-                  <div style="flex:1">
-                    <div class="prow-name">Trace Three</div>
-                    <div class="prow-meta">Sub-Partner (SI) of AWS</div>
-                  </div>
-                  <span class="bdg b-active">Active</span>
-                </div>
-                <div class="prow" style="margin-left:3rem;border-left:2px solid rgba(255,255,255,.08);padding-left:.75rem">
-                  <div class="pav" style="background:rgba(0,180,180,.15);color:#4ecece">C</div>
-                  <div style="flex:1">
-                    <div class="prow-name">Crocs</div>
-                    <div class="prow-meta">Joint Customer via Trace Three</div>
-                  </div>
-                  <span class="bdg b-ob">Onboarding</span>
-                </div>
-                <div class="prow" style="margin-top:.25rem">
-                  <div class="pav" style="background:rgba(100,120,200,.2);color:#8baad4">M</div>
-                  <div style="flex:1">
-                    <div class="prow-name">Microsoft Azure</div>
-                    <div class="prow-meta">Primary · CSP Gold Partner</div>
-                  </div>
-                  <span class="bdg b-active">Active</span>
-                </div>
-                <div class="prow">
-                  <div class="pav" style="background:rgba(200,100,200,.15);color:#d88ad8">S</div>
-                  <div style="flex:1">
-                    <div class="prow-name">Snowflake</div>
-                    <div class="prow-meta">Primary · ISV Technology Partner</div>
-                  </div>
-                  <span class="bdg b-active">Active</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="demo-cap"><b>Native three-tier hierarchy.</b> AWS → Trace Three → Crocs attribution, all three entities linked simultaneously. No workarounds, no custom fields — it's built into the data model.</p>
-      </div>
-
-      <!-- PROGRAMS PANEL -->
-      <div class="dpanel" id="panel-programs">
-        <div class="app-frame">
-          <div class="app-bar">
-            <div class="wd" style="background:#ff5f56"></div>
-            <div class="wd" style="background:#ffbd2e"></div>
-            <div class="wd" style="background:#27c93f"></div>
-            <div class="app-url">app.getpartnr.co/programs</div>
-          </div>
-          <div class="app-shell">
-            <div class="app-sb">
-              <div class="sb-logo">Part<em>n</em>r</div>
-              <div class="sbi">⬡ Dashboard</div>
-              <div class="sbi">🏢 Partners</div>
-              <div class="sbi on">📋 Programs</div>
-              <div class="sbi">⚡ Activities</div>
-            </div>
-            <div class="app-main">
-              <div class="page-h">Programs</div>
-              <div class="kanban">
-                <div class="kcol">
-                  <div class="kch">Initiated <span>1</span></div>
-                  <div class="kc">
-                    <div class="kc-name">AWS ISV Accelerate</div>
-                    <span class="bdg b-sell" style="font-size:.58rem">Sell</span>
-                    <div class="kc-bar"><div class="kc-fill" style="width:10%"></div></div>
-                    <div class="kc-pct">10%</div>
-                  </div>
-                </div>
-                <div class="kcol">
-                  <div class="kch">Requirements <span>1</span></div>
-                  <div class="kc">
-                    <div class="kc-name">Azure Co-Sell Ready</div>
-                    <span class="bdg b-sell" style="font-size:.58rem">Sell</span>
-                    <div class="kc-bar"><div class="kc-fill" style="width:45%"></div></div>
-                    <div class="kc-pct">45%</div>
-                  </div>
-                </div>
-                <div class="kcol">
-                  <div class="kch">In Progress <span>2</span></div>
-                  <div class="kc" style="border-color:rgba(212,137,26,.2)">
-                    <div class="kc-name">AWS AI Competency</div>
-                    <span class="bdg b-build" style="font-size:.58rem">Build</span>
-                    <div class="kc-bar"><div class="kc-fill" style="width:72%"></div></div>
-                    <div class="kc-pct">72%</div>
-                  </div>
-                  <div class="kc">
-                    <div class="kc-name">Snowflake Case Study</div>
-                    <span class="bdg b-market" style="font-size:.58rem">Market</span>
-                    <div class="kc-bar"><div class="kc-fill" style="width:60%"></div></div>
-                    <div class="kc-pct">60%</div>
-                  </div>
-                </div>
-                <div class="kcol">
-                  <div class="kch">Launched <span>1</span></div>
-                  <div class="kc">
-                    <div class="kc-name">AWS Marketplace Listing</div>
-                    <span class="bdg b-sell" style="font-size:.58rem">Sell</span>
-                    <div class="kc-bar"><div class="kc-fill" style="width:100%"></div></div>
-                    <div class="kc-pct">Live ✓</div>
-                  </div>
-                </div>
-                <div class="kcol">
-                  <div class="kch">Realized <span>1</span></div>
-                  <div class="kc">
-                    <div class="kc-name">MDF $25k Credit</div>
-                    <span class="bdg b-sell" style="font-size:.58rem">Sell</span>
-                    <div class="kc-bar"><div class="kc-fill" style="width:100%"></div></div>
-                    <div class="kc-pct">$25,000 secured</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="demo-cap"><b>Partnership pipeline — not sales pipeline.</b> Five lifecycle stages from Initiated to Benefit Realized. Advance programs with one click. Build, Market, and Sell dimensions slice the board for any stakeholder conversation.</p>
-      </div>
-
-      <!-- ACTIVITIES PANEL -->
-      <div class="dpanel" id="panel-activities">
-        <div class="app-frame">
-          <div class="app-bar">
-            <div class="wd" style="background:#ff5f56"></div>
-            <div class="wd" style="background:#ffbd2e"></div>
-            <div class="wd" style="background:#27c93f"></div>
-            <div class="app-url">app.getpartnr.co/activities</div>
-          </div>
-          <div class="app-shell">
-            <div class="app-sb">
-              <div class="sb-logo">Part<em>n</em>r</div>
-              <div class="sbi">⬡ Dashboard</div>
-              <div class="sbi">🏢 Partners</div>
-              <div class="sbi">📋 Programs</div>
-              <div class="sbi on">⚡ Activities</div>
-            </div>
-            <div class="app-main">
-              <div class="page-h">Activities</div>
-              <div style="font-size:.68rem;color:var(--mu2);margin-bottom:.75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--brd);padding-bottom:.4rem">Today</div>
-              <div class="acts">
-                <div class="act">
-                  <div class="act-type">Cert ✓</div>
-                  <div style="flex:1">
-                    <div class="act-out">Passed SageMaker Specialty exam — 4th of 5 required</div>
-                    <div class="act-meta">AWS AI Competency · Build · aws-portal.amazon.com/badge/…</div>
-                  </div>
-                </div>
-                <div class="act">
-                  <div class="act-type">Meeting</div>
-                  <div style="flex:1">
-                    <div class="act-out">Synced with Azure PDM on Co-Sell Ready requirements</div>
-                    <div class="act-meta">Azure Co-Sell Ready · Sell · Sarah Chen · 45 min</div>
-                  </div>
-                </div>
-              </div>
-              <div style="font-size:.68rem;color:var(--mu2);margin:1rem 0 .75rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--brd);padding-bottom:.4rem">Yesterday</div>
-              <div class="acts">
-                <div class="act">
-                  <div class="act-type">Content</div>
-                  <div style="flex:1">
-                    <div class="act-out">Submitted Snowflake case study draft to marketing</div>
-                    <div class="act-meta">Snowflake Case Study · Market · docs.google.com/…</div>
-                  </div>
-                </div>
-                <div class="act">
-                  <div class="act-type">Deal Reg</div>
-                  <div style="flex:1">
-                    <div class="act-out">Registered Crocs opportunity through Trace Three on AWS</div>
-                    <div class="act-meta">Trace Three · Sell · $180k ACV</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="demo-cap"><b>Every action logged, every outcome tracked.</b> Activities roll up to program progress, partner health scores, and the weekly snapshot report — automatically. No separate reporting work.</p>
-      </div>
-
-      <!-- DASHBOARD PANEL -->
-      <div class="dpanel" id="panel-dashboard">
-        <div class="app-frame">
-          <div class="app-bar">
-            <div class="wd" style="background:#ff5f56"></div>
-            <div class="wd" style="background:#ffbd2e"></div>
-            <div class="wd" style="background:#27c93f"></div>
-            <div class="app-url">app.getpartnr.co/dashboard</div>
-          </div>
-          <div class="app-shell">
-            <div class="app-sb">
-              <div class="sb-logo">Part<em>n</em>r</div>
-              <div class="sbi on">⬡ Dashboard</div>
-              <div class="sbi">🏢 Partners</div>
-              <div class="sbi">📋 Programs</div>
-              <div class="sbi">⚡ Activities</div>
-            </div>
-            <div class="app-main">
-              <div class="page-h">Dashboard</div>
-              <div class="kpis">
-                <div class="kpi"><div class="kpi-n">5</div><div class="kpi-l">Partners</div></div>
-                <div class="kpi"><div class="kpi-n">6</div><div class="kpi-l">Programs</div></div>
-                <div class="kpi hi"><div class="kpi-n">2</div><div class="kpi-l">In Progress</div></div>
-                <div class="kpi"><div class="kpi-n">12</div><div class="kpi-l">Activities</div></div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr;gap:.875rem">
-                <div>
-                  <div style="font-size:.68rem;color:var(--mu);font-weight:500;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.05em">Top Programs</div>
-                  <div style="display:flex;flex-direction:column;gap:.35rem">
-                    <div style="background:var(--bg3);border:1px solid var(--brd);border-radius:6px;padding:.6rem">
-                      <div style="font-size:.72rem;font-weight:500;margin-bottom:.25rem">AWS AI Competency</div>
-                      <div style="height:4px;background:var(--brd);border-radius:2px;overflow:hidden"><div style="width:72%;height:100%;background:var(--amber);border-radius:2px"></div></div>
-                      <div style="font-size:.6rem;color:var(--mu2);margin-top:.2rem">72% · Build</div>
-                    </div>
-                    <div style="background:var(--bg3);border:1px solid var(--brd);border-radius:6px;padding:.6rem">
-                      <div style="font-size:.72rem;font-weight:500;margin-bottom:.25rem">Snowflake Case Study</div>
-                      <div style="height:4px;background:var(--brd);border-radius:2px;overflow:hidden"><div style="width:60%;height:100%;background:var(--amber);border-radius:2px"></div></div>
-                      <div style="font-size:.6rem;color:var(--mu2);margin-top:.2rem">60% · Market</div>
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <div style="font-size:.68rem;color:var(--mu);font-weight:500;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.05em">Build · Market · Sell</div>
-                  <div style="background:var(--bg3);border:1px solid var(--brd);border-radius:6px;padding:.75rem;display:flex;flex-direction:column;gap:.5rem">
-                    <div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem"><span style="color:#4ecece;min-width:46px">Build</span><div style="flex:1;height:5px;background:var(--brd);border-radius:2px;overflow:hidden"><div style="width:66%;height:100%;background:#4ecece;border-radius:2px"></div></div><span style="color:var(--mu2)">2</span></div>
-                    <div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem"><span style="color:#d88ad8;min-width:46px">Market</span><div style="flex:1;height:5px;background:var(--brd);border-radius:2px;overflow:hidden"><div style="width:33%;height:100%;background:#d88ad8;border-radius:2px"></div></div><span style="color:var(--mu2)">1</span></div>
-                    <div style="display:flex;align-items:center;gap:.5rem;font-size:.72rem"><span style="color:var(--amberhi);min-width:46px">Sell</span><div style="flex:1;height:5px;background:var(--brd);border-radius:2px;overflow:hidden"><div style="width:100%;height:100%;background:var(--amber);border-radius:2px"></div></div><span style="color:var(--mu2)">3</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <p class="demo-cap"><b>The Friday snapshot — automatically.</b> Program progress, Build/Market/Sell breakdown, recent activities. Send this to your CRO instead of a hand-crafted email.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-  <div class="wrap">
-    <p class="eyebrow reveal">How it works</p>
-    <h2 class="reveal">Up and running in <em>30 minutes</em></h2>
-    <p class="lead reveal">Three steps from signup to first weekly snapshot.</p>
-    <div class="how-steps">
-      <div class="step reveal">
-        <div class="step-n">01</div>
-        <h3>Add your partners</h3>
-        <p>Create your partner network with native multi-tier hierarchy — Primary partners, SI sub-partners, and joint customers all linked. AWS, Azure, GCP cloud affiliation baked in.</p>
-      </div>
-      <div class="step reveal">
-        <div class="step-n">02</div>
-        <h3>Track your programs</h3>
-        <p>Set up certifications, marketplace listings, MDF applications, co-marketing programs, and technical integrations with lifecycle stages and progress tracking. No freeform tags.</p>
-      </div>
-      <div class="step reveal">
-        <div class="step-n">03</div>
-        <h3>Log activities daily</h3>
-        <p>Every meeting, submission, certification, and deal registration rolls up automatically. Partnr generates your weekly leadership snapshot — you stop building it by hand.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BUILD MARKET SELL -->
-<section class="fw">
-  <div class="wrap">
-    <p class="eyebrow reveal">The framework</p>
-    <h2 class="reveal">One data set. Three <em>stakeholder conversations.</em></h2>
-    <p class="lead reveal">Every program and activity maps to Build, Market, or Sell — so you can report to any stakeholder using the same underlying data.</p>
-    <div class="fw-grid">
-      <div class="fwc reveal">
-        <div class="fwc-ico">⚙️</div>
-        <div class="fwc-lbl">Build</div>
-        <h3>Technical programs</h3>
-        <p>Product integrations, certifications, AWS Bedrock and SageMaker implementations, technical program completion and deployment milestones.</p>
-        <div class="fwc-who">Reports to: CTO / Engineering</div>
-      </div>
-      <div class="fwc reveal">
-        <div class="fwc-ico">📣</div>
-        <div class="fwc-lbl">Market</div>
-        <h3>Joint content & campaigns</h3>
-        <p>Blog posts, case studies, battle kits, co-marketing programs, joint webinars, and content pipeline status tracked against completion milestones.</p>
-        <div class="fwc-who">Reports to: CMO / Marketing</div>
-      </div>
-      <div class="fwc reveal">
-        <div class="fwc-ico">💰</div>
-        <div class="fwc-lbl">Sell</div>
-        <h3>Revenue programs</h3>
-        <p>Co-sell pipeline, marketplace listings, deal registrations, MDF credits secured, and downstream revenue attribution when deals close.</p>
-        <div class="fwc-who">Reports to: CRO / Sales</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING -->
-<section class="pricing" id="pricing">
-  <div class="wrap">
-    <p class="eyebrow reveal">Pricing</p>
-    <h2 class="reveal">Simple, <em>transparent</em> pricing</h2>
-    <p class="lead reveal">Start free. Upgrade when you need more. No annual lock-in.</p>
-    <div class="pricing-grid reveal">
-
-      <div class="pcard">
-        <div class="ptier">Starter</div>
-        <div class="pamount">$0<span>/mo</span></div>
-        <div class="pper">Forever free</div>
-        <div class="pdesc">Perfect for getting started and validating Partnr fits your workflow.</div>
-        <ul class="pfeats">
-          <li>Up to 5 partners</li>
-          <li>Unlimited programs</li>
-          <li>Activity logging</li>
-          <li>Build / Market / Sell views</li>
-          <li>Basic dashboard</li>
-        </ul>
-        <a href="https://app.getpartnr.co/login" class="pcta sec">Get started free</a>
-        <div class="pnote">No credit card required</div>
-      </div>
-
-      <div class="pcard feat">
-        <div class="ptier" style="margin-top:1.25rem">Growth</div>
-        <div class="pamount">$299<span>/mo</span></div>
-        <div class="pper">Billed monthly · cancel anytime</div>
-        <div class="pdesc">For alliance managers running active cloud partnerships who need the full workflow.</div>
-        <ul class="pfeats">
-          <li>Unlimited partners & programs</li>
-          <li>Multi-tier hierarchy (SI chains)</li>
-          <li>Weekly snapshot report</li>
-          <li>AI deal registration assistant</li>
-          <li>Document & evidence storage</li>
-          <li>Requirements checklists</li>
-          <li>Email support</li>
-        </ul>
-        <a href="https://app.getpartnr.co/login?plan=growth" class="pcta pri">Start free trial</a>
-        <div class="pnote">14-day free trial · no card needed</div>
-      </div>
-
-      <div class="pcard">
-        <div class="ptier">Team</div>
-        <div class="pamount">$599<span>/mo</span></div>
-        <div class="pper">Up to 5 seats · billed monthly</div>
-        <div class="pdesc">For partnerships teams managing multiple cloud programs across a larger organization.</div>
-        <ul class="pfeats">
-          <li>Everything in Growth</li>
-          <li>5 team seats included</li>
-          <li>HubSpot / Salesforce sync</li>
-          <li>Pipeline health AI monitor</li>
-          <li>Partner performance analytics</li>
-          <li>Priority Slack support</li>
-        </ul>
-        <a href="https://app.getpartnr.co/login?plan=team" class="pcta sec">Start free trial</a>
-        <div class="pnote">14-day free trial · no card needed</div>
-      </div>
-
-    </div>
-    <div style="text-align:center;margin-top:1.75rem;font-size:.82rem;color:var(--mu2)">
-      Design partner pricing locked in for life · All plans include SOC-2 ready infrastructure · Data export always available
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq">
-  <div class="wrap">
-    <p class="eyebrow reveal">FAQ</p>
-    <h2 class="reveal">Real questions, <em>straight answers</em></h2>
-    <div class="faq-grid reveal">
-      <div class="fq" onclick="toggleFAQ(this)">
-        <div class="fq-q">How is this different from my CRM? <span>+</span></div>
-        <div class="fq-a">Your CRM tracks customer deals and contacts. Partnr tracks the partnership programs — certifications, MDF credits, joint content, SI hierarchies — that drive those deals. They're designed to work together: Partnr manages the partnership, your CRM manages the customer. We sync select data over, not replace it.</div>
-      </div>
-      <div class="fq" onclick="toggleFAQ(this)">
-        <div class="fq-q">What is a "Program" in Partnr? <span>+</span></div>
-        <div class="fq-a">A Program is the core unit of partnership work — things like an AWS AI Competency certification track, an MDF application, a joint case study, or a marketplace listing. Each has a lifecycle stage (Initiated → Requirements → In Progress → Launched → Benefit Realized), requirements checklists, and links to the activities that advance it.</div>
-      </div>
-      <div class="fq" onclick="toggleFAQ(this)">
-        <div class="fq-q">Do I need AWS/Azure API access to use this? <span>+</span></div>
-        <div class="fq-a">No. In v1, you log program data manually — which takes less than 5 minutes per program. AWS and Azure Partner Center API integrations are on the Phase 3 roadmap and will pull certification status, enrollment, and MDF data automatically once live.</div>
-      </div>
-      <div class="fq" onclick="toggleFAQ(this)">
-        <div class="fq-q">What's the weekly snapshot report? <span>+</span></div>
-        <div class="fq-a">It's an auto-generated summary of your partnership activity for the past 7 days — programs advanced, certifications completed, content published, credits secured, deals registered. It's designed to replace the hand-crafted email you currently send your CRO every Friday.</div>
-      </div>
-      <div class="fq" onclick="toggleFAQ(this)">
-        <div class="fq-q">Is my data private? Who else can see it? <span>+</span></div>
-        <div class="fq-a">All data is isolated by user with Supabase Row Level Security — nobody else can access your data. We don't sell data, serve ads, or use your partnership data for any purpose other than running the product. SOC 2 Type II audit is on the roadmap.</div>
-      </div>
-      <div class="fq" onclick="toggleFAQ(this)">
-        <div class="fq-q">Can I cancel or export my data? <span>+</span></div>
-        <div class="fq-a">Yes to both. Cancel anytime from your account settings — no penalty, no questions. CSV export is available on all paid plans. You own your data and can take it with you at any time.</div>
-      </div>
-      <div class="fq" onclick="toggleFAQ(this)">
-        <div class="fq-q">What's the design partner program? <span>+</span></div>
-        <div class="fq-a">We're onboarding the first 10 alliance managers at a locked-in price that never increases. In exchange, you get direct Slack access to the founding team, your use cases shape the roadmap, and we'll credit your first month if Partnr doesn't deliver visible value. Apply using the form below.</div>
-      </div>
-      <div class="fq" onclick="toggleFAQ(this)">
-        <div class="fq-q">Do I need to book a demo call? <span>+</span></div>
-        <div class="fq-a">No. Sign up, add your first partner and program, and see if it fits your workflow — no call required. If you want to talk to a human, email us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2d45484141426d4a48595d4c5f59435f034e42">[email&#160;protected]</a> and we'll respond same day.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="final" id="signup">
-  <div class="wrap">
-    <p class="eyebrow" style="position:relative;z-index:1">Get started today</p>
-    <h2>Stop proving your worth <em>with a spreadsheet</em></h2>
-    <p class="lead">Alliance managers at Series A/B companies are switching from Excel and retrofitted CRMs to Partnr. Join them.</p>
-    <div class="signup-box">
-      <div class="signup-row">
-        <input type="email" class="signup-input" id="final-email" placeholder="your@company.com">
-        <a href="#" class="btn-big" onclick="handleSignup(event)">Create free account →</a>
-      </div>
-      <p class="final-note">Takes 2 minutes · no credit card · cancel anytime</p>
-      <div id="signup-ok" style="display:none;color:var(--amberhi);font-size:.9rem;margin-top:.5rem">✓ Redirecting you to the app…</div>
-    </div>
-    <div class="trust-row">
-      <div class="trust-item">🔒 Data isolated by user</div>
-      <div class="trust-item">⚡ 5-minute onboarding</div>
-      <div class="trust-item">🤝 Design partner pricing locked</div>
-      <div class="trust-item">📤 Export anytime</div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>© 2026 Partnr. The Partner CRM for Alliance Managers.</p>
+  <!-- NAV -->
   <nav>
-    <a href="/cdn-cgi/l/email-protection#a9c1ccc5c5c6e9ceccddd9c8dbddc7db87cac6"><span class="__cf_email__" data-cfemail="aac2cfc6c6c5eacdcfdedacbd8dec4d884c9c5">[email&#160;protected]</span></a>
-    <a href="#pricing">Pricing</a>
-    <a href="https://app.getpartnr.co/login">Sign in</a>
+    <a href="/" class="nav-logo">Partnr<span>.</span></a>
+    <div class="nav-links">
+      <a href="#how-it-works">How it works</a>
+      <a href="#who">Who it's for</a>
+      <a href="https://app.getpartnr.co/login" class="nav-cta">Sign in →</a>
+    </div>
   </nav>
-</footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Scroll reveal
-const obs = new IntersectionObserver(els => {
-  els.forEach(el => { if(el.isIntersecting){el.target.classList.add('in');obs.unobserve(el.target)} });
-},{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Private Beta — Design Partners Open</div>
+    <h1>Partnerships run on <em>more</em> than pipeline</h1>
+    <p class="hero-sub">
+      <strong>Revenue is a lagging indicator.</strong> Partnr tracks the certifications, programs, and joint activities that drive it — so you can prove your value long before deals close.
+    </p>
+    <div class="hero-buttons">
+      <a href="https://app.getpartnr.co/login" class="btn-primary">Start free →</a>
+      <a href="#how-it-works" class="btn-secondary">See how it works ↓</a>
+    </div>
+    <p class="hero-meta">No credit card required · 5-minute setup · Cancel anytime</p>
+  </div>
 
-// Nav border on scroll
-window.addEventListener('scroll',()=>{
-  document.getElementById('nav').style.borderBottomColor =
-    window.scrollY > 20 ? 'rgba(255,255,255,.12)' : 'rgba(255,255,255,.07)';
-});
+  <div class="problem-strip">
+    <p>Every existing tool — Salesforce, HubSpot, Labra, Tackle — tracks <strong>one thing: co-sell revenue</strong>. Alliance managers responsible for certifications, integrations, MDF, and joint content are stuck in Excel. Partnr was built to fix that.</p>
+  </div>
 
-// Demo tabs
-function showPanel(name, btn) {
-  document.querySelectorAll('.dpanel').forEach(p => p.classList.remove('on'));
-  document.querySelectorAll('.dtab').forEach(b => b.classList.remove('on'));
-  document.getElementById('panel-'+name).classList.add('on');
-  btn.classList.add('on');
-}
+  <!-- THREE PILLARS -->
+  <section id="how-it-works">
+    <p class="section-label">The Framework</p>
+    <h2>Build. Market. <em>Sell.</em></h2>
+    <p class="section-sub">Every program, activity, and report in Partnr maps to one of three dimensions — giving you a single source of truth for every stakeholder conversation.</p>
+    <div class="pillars">
+      <div class="pillar pillar-build">
+        <div class="pillar-icon">🔧</div>
+        <h3>Build</h3>
+        <p>Technical integrations, cloud certifications, marketplace listings, and competency programs.</p>
+        <ul>
+          <li>AWS AI Competency</li>
+          <li>Marketplace listings</li>
+          <li>Technical certifications</li>
+          <li>FTR / Technical validation</li>
+        </ul>
+      </div>
+      <div class="pillar pillar-market">
+        <div class="pillar-icon">📣</div>
+        <h3>Market</h3>
+        <p>Joint content, co-marketing programs, MDF credits, battle kits, and case studies.</p>
+        <ul>
+          <li>Joint case studies</li>
+          <li>MDF fund tracking</li>
+          <li>Co-marketing programs</li>
+          <li>Content pipeline status</li>
+        </ul>
+      </div>
+      <div class="pillar pillar-sell">
+        <div class="pillar-icon">💰</div>
+        <h3>Sell</h3>
+        <p>Co-sell pipeline, deal registrations, marketplace transactions, and revenue attribution.</p>
+        <ul>
+          <li>ACE opportunity tracking</li>
+          <li>Deal registration</li>
+          <li>Co-sell pipeline</li>
+          <li>Revenue attribution</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-// FAQ toggle
-function toggleFAQ(el) {
-  const wasOpen = el.classList.contains('open');
-  document.querySelectorAll('.fq').forEach(f => f.classList.remove('open'));
-  if(!wasOpen) el.classList.add('open');
-}
+  <hr class="divider" />
 
-// Signup
-function handleSignup(e) {
-  e.preventDefault();
-  const email = document.getElementById('final-email').value;
-  if (!email || !email.includes('@')) {
-    document.getElementById('final-email').style.borderColor = 'var(--danger,#c05040)';
-    return;
-  }
-  document.getElementById('signup-ok').
+  <!-- PROBLEM VS SOLUTION -->
+  <section>
+    <p class="section-label">The Problem</p>
+    <h2>Alliance managers are flying <em>blind.</em></h2>
+    <p class="section-sub">The 3–6 month window between partnership activity and closed revenue is where alliance managers lose their jobs. Partnr makes that window visible.</p>
+    <div class="ps-grid">
+      <div>
+        <p style="font-size:0.8rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;margin-bottom:1rem;">Without Partnr</p>
+        <div class="problem-list">
+          <div class="problem-item">
+            <h4>Invisible work</h4>
+            <p>Certifications, MDF, and integration work don't show up in any CRM — so leadership can't see it.</p>
+          </div>
+          <div class="problem-item">
+            <h4>Excel everywhere</h4>
+            <p>Partner programs tracked in spreadsheets that break, go stale, and can't be reported on.</p>
+          </div>
+          <div class="problem-item">
+            <h4>Revenue-only metrics</h4>
+            <p>Every existing tool measures only pipeline and closed revenue — lagging indicators that come too late.</p>
+          </div>
+          <div class="problem-item">
+            <h4>No proof of value</h4>
+            <p>Alliance managers can't demonstrate ROI until deals close — often 6+ months after the real work is done.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size:0.8rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;margin-bottom:1rem;">With Partnr</p>
+        <div class="solution-list">
+          <div class="solution-item">
+            <h4>Leading indicators</h4>
+            <p>Track the upstream activities — certs, integrations, content — that predict revenue outcomes weeks in advance.</p>
+          </div>
+          <div class="solution-item">
+            <h4>Structured programs</h4>
+            <p>Every initiative has a lifecycle, an owner, milestones, and progress — like opportunities, but for partnerships.</p>
+          </div>
+          <div class="solution-item">
+            <h4>AHI scoring</h4>
+            <p>Alliance Health Index gives every partner relationship a live score across velocity, revenue, risk, and milestones.</p>
+          </div>
+          <div class="solution-item">
+            <h4>Auto-generated snapshots</h4>
+            <p>AI-written weekly briefings that make your output visible and defensible to leadership — automatically.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- AHI EXPLAINER -->
+  <section>
+    <p class="section-label">Alliance Health Index</p>
+    <h2>A score for every <em>partnership.</em></h2>
+    <p class="section-sub">AHI is a composite health score built from four leading indicators — not revenue. It tells you which partnerships are gaining momentum and which are quietly stalling.</p>
+    <div class="ahi-grid">
+      <div class="ahi-card">
+        <div class="ahi-score" style="color:#16A34A">84</div>
+        <div class="ahi-label">Amazon Web Services · Grade A</div>
+        <div class="ahi-bar-wrap">
+          <div class="ahi-bar-label"><span>Program Velocity</span><span style="color:#16A34A">91</span></div>
+          <div class="ahi-bar"><div class="ahi-bar-fill" style="width:91%;background:#16A34A"></div></div>
+        </div>
+        <div class="ahi-bar-wrap">
+          <div class="ahi-bar-label"><span>Revenue Attribution</span><span style="color:#65A30D">78</span></div>
+          <div class="ahi-bar"><div class="ahi-bar-fill" style="width:78%;background:#65A30D"></div></div>
+        </div>
+        <div class="ahi-bar-wrap">
+          <div class="ahi-bar-label"><span>Risk & Stall Signals</span><span style="color:#16A34A">82</span></div>
+          <div class="ahi-bar"><div class="ahi-bar-fill" style="width:82%;background:#16A34A"></div></div>
+        </div>
+        <div class="ahi-bar-wrap">
+          <div class="ahi-bar-label"><span>Certifications</span><span style="color:#16A34A">85</span></div>
+          <div class="ahi-bar"><div class="ahi-bar-fill" style="width:85%;background:#16A34A"></div></div>
+        </div>
+      </div>
+      <div class="ahi-card">
+        <div class="ahi-score" style="color:#D97706">51</div>
+        <div class="ahi-label">Microsoft Azure · Grade C</div>
+        <div class="ahi-bar-wrap">
+          <div class="ahi-bar-label"><span>Program Velocity</span><span style="color:#EA580C">38</span></div>
+          <div class="ahi-bar"><div class="ahi-bar-fill" style="width:38%;background:#EA580C"></div></div>
+        </div>
+        <div class="ahi-bar-wrap">
+          <div class="ahi-bar-label"><span>Revenue Attribution</span><span style="color:#D97706">55</span></div>
+          <div class="ahi-bar"><div class="ahi-bar-fill" style="width:55%;background:#D97706"></div></div>
+        </div>
+        <div class="ahi-bar-wrap">
+          <div class="ahi-bar-label"><span>Risk & Stall Signals</span><span style="color:#D97706">48</span></div>
+          <div class="ahi-bar"><div class="ahi-bar-fill" style="width:48%;background:#D97706"></div></div>
+        </div>
+        <div class="ahi-bar-wrap">
+          <div class="ahi-bar-label"><span>Certifications</span><span style="color:#D97706">62</span></div>
+          <div class="ahi-bar"><div class="ahi-bar-fill" style="width:62%;background:#D97706"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- WHO IT'S FOR -->
+  <section id="who">
+    <p class="section-label">Who It's For</p>
+    <h2>Built for the people who <em>run</em> partnerships.</h2>
+    <p class="section-sub">Partnr was designed for Series A/B startups with active AWS, Azure, or GCP partnerships — and a team of 1–3 people managing them.</p>
+    <div class="personas">
+      <div class="persona">
+        <div class="persona-role">Primary User</div>
+        <h3>Alliance Manager</h3>
+        <p>You manage certifications, MDF, co-sell, and joint content across 1–3 cloud partners. Your work is invisible until deals close. Partnr changes that.</p>
+        <div class="persona-wins">
+          <div class="persona-win">Track every program with a lifecycle and milestone checklist</div>
+          <div class="persona-win">Log activities that roll up into your weekly snapshot</div>
+          <div class="persona-win">Get AI-written briefings that make your work visible to leadership</div>
+          <div class="persona-win">See stall alerts before partnerships go cold</div>
+        </div>
+      </div>
+      <div class="persona">
+        <div class="persona-role">Executive Audience</div>
+        <h3>CRO / VP of Partnerships</h3>
+        <p>You need to know which cloud partnerships are healthy and which are at risk — without waiting for quarterly business reviews.</p>
+        <div class="persona-wins">
+          <div class="persona-win">Portfolio AHI scores across every cloud partner</div>
+          <div class="persona-win">AI-generated Partner Pulse briefings for ELT</div>
+          <div class="persona-win">Revenue attribution tied to specific programs</div>
+          <div class="persona-win">Build / Market / Sell breakdown for any stakeholder</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- FEATURES -->
+  <section>
+    <p class="section-label">Features</p>
+    <h2>Everything a partner CRM <em>should</em> have.</h2>
+    <p class="section-sub">The features that alliance managers actually need — not a sales CRM retrofitted for partnerships.</p>
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <h4>Program Tracking</h4>
+        <p>Programs with full lifecycle stages, milestone checklists, owners, and target dates. Like opportunities, but for partnership maturity.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🧠</div>
+        <h4>AI Snapshot Reports</h4>
+        <p>Auto-generated weekly briefings covering program progress, credits secured, and attributed pipeline. Ready for leadership every Friday.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">⚠️</div>
+        <h4>Stall Detection</h4>
+        <p>AI-powered alerts when programs haven't moved in 14+ days, with specific next steps and who to contact.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📈</div>
+        <h4>AHI Scoring</h4>
+        <p>Alliance Health Index scores every partnership across velocity, revenue attribution, risk signals, and certification milestones.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🤝</div>
+        <h4>PDM Coaching</h4>
+        <p>AI pre-call briefs before every partner interaction — tailored to your current programs, stalls, and relationship history.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📥</div>
+        <h4>CSV Import</h4>
+        <p>Import your existing partner data from spreadsheets with AI-assisted column mapping. Live in 5 minutes.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- ICP -->
+  <section>
+    <p class="section-label">Ideal Fit</p>
+    <h2>Is Partnr right for <em>you?</em></h2>
+    <div class="icp-grid">
+      <div class="icp-item">
+        <div class="icp-icon">🚀</div>
+        <h4>Series A or B</h4>
+        <p>Post-raise budget to invest in tooling. Can't justify enterprise complexity.</p>
+      </div>
+      <div class="icp-item">
+        <div class="icp-icon">☁️</div>
+        <h4>Active Cloud Partnerships</h4>
+        <p>At least one active AWS, Azure, or GCP partner program in flight.</p>
+      </div>
+      <div class="icp-item">
+        <div class="icp-icon">📋</div>
+        <h4>Managing in Excel</h4>
+        <p>Your current stack is a spreadsheet. You know there's a better way.</p>
+      </div>
+      <div class="icp-item">
+        <div class="icp-icon">👤</div>
+        <h4>1–3 Person Team</h4>
+        <p>A dedicated alliance manager or small partnerships team.</p>
+      </div>
+      <div class="icp-item">
+        <div class="icp-icon">🔍</div>
+        <h4>Pre-Revenue Phase</h4>
+        <p>You need to demonstrate partnership value before deals close.</p>
+      </div>
+      <div class="icp-item">
+        <div class="icp-icon">📣</div>
+        <h4>Leadership Visibility</h4>
+        <p>You need to show your work to a CRO or CEO who only cares about revenue.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Your partnerships, finally visible.</h2>
+    <p>Join alliance managers who use Partnr to track what actually drives partnership revenue.</p>
+    <a href="https://app.getpartnr.co/login" class="btn-primary" style="font-size:1.1rem;padding:1rem 2.5rem;">
+      Start free — no credit card required →
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>© 2026 Partnr · <a href="mailto:hello@getpartnr.co">hello@getpartnr.co</a></div>
+    <div style="display:flex;gap:1.5rem;">
+      <a href="https://app.getpartnr.co/login">Sign in</a>
+      <a href="mailto:hello@getpartnr.co">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>
