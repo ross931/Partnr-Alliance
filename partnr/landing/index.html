@@ -20,7 +20,6 @@
     }
     html { scroll-behavior: smooth; }
     body { background: var(--navy); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
-
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
@@ -35,7 +34,6 @@
     .nav-links a:hover { color: var(--text); }
     .nav-cta { background: var(--blue); color: white; padding: 0.5rem 1.25rem; border-radius: 8px; font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: background 0.2s; }
     .nav-cta:hover { background: var(--blue-dark); }
-
     .hero {
       min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; padding: 8rem 2rem 6rem; position: relative; overflow: hidden;
@@ -62,17 +60,14 @@
     .btn-secondary { color: var(--text-muted); font-size: 1rem; text-decoration: none; transition: color 0.2s; display: inline-flex; align-items: center; gap: 0.4rem; }
     .btn-secondary:hover { color: var(--text); }
     .hero-meta { font-size: 0.8rem; color: var(--text-dim); }
-
     .problem-strip { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; }
     .problem-strip p { color: var(--text-muted); font-size: 0.95rem; max-width: 700px; margin: 0 auto; }
     .problem-strip strong { color: var(--text); }
-
     section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
     .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 1rem; }
     h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem; }
     h2 em { font-style: italic; color: var(--amber); }
     .section-sub { color: var(--text-muted); font-size: 1.05rem; max-width: 560px; line-height: 1.7; margin-bottom: 3rem; }
-
     .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .pillar { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: border-color 0.2s; }
     .pillar:hover { border-color: var(--border-light); }
@@ -88,7 +83,6 @@
     .pillar ul { list-style: none; margin-top: 1rem; }
     .pillar ul li { font-size: 0.85rem; color: var(--text-dim); padding: 0.25rem 0; border-top: 1px solid var(--border); }
     .pillar ul li::before { content: '→ '; color: var(--border-light); }
-
     .ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
     .problem-list, .solution-list { display: flex; flex-direction: column; gap: 1rem; }
     .problem-item { background: rgba(220,38,38,0.05); border: 1px solid rgba(220,38,38,0.15); border-radius: 12px; padding: 1.25rem 1.5rem; }
@@ -97,7 +91,6 @@
     .solution-item { background: rgba(22,163,74,0.05); border: 1px solid rgba(22,163,74,0.15); border-radius: 12px; padding: 1.25rem 1.5rem; }
     .solution-item h4 { font-size: 0.9rem; font-weight: 600; color: #4ADE80; margin-bottom: 0.25rem; }
     .solution-item p { font-size: 0.85rem; color: var(--text-muted); }
-
     .ahi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     .ahi-card { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; }
     .ahi-score { font-size: 2.5rem; font-weight: 700; line-height: 1; margin-bottom: 0.25rem; }
@@ -106,7 +99,6 @@
     .ahi-bar-label { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.3rem; }
     .ahi-bar { height: 4px; background: var(--navy-light); border-radius: 2px; overflow: hidden; }
     .ahi-bar-fill { height: 100%; border-radius: 2px; }
-
     .personas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     .persona { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
     .persona-role { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; }
@@ -115,28 +107,23 @@
     .persona-wins { display: flex; flex-direction: column; gap: 0.5rem; }
     .persona-win { font-size: 0.85rem; color: var(--text-muted); padding-left: 1rem; position: relative; }
     .persona-win::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 600; }
-
     .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .feature { padding: 0.5rem; }
     .feature-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
     .feature h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
     .feature p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
-
     .icp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
     .icp-item { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center; }
     .icp-item .icp-icon { font-size: 2rem; margin-bottom: 0.75rem; }
     .icp-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
     .icp-item p { font-size: 0.82rem; color: var(--text-muted); }
-
     .cta-section { text-align: center; padding: 8rem 2rem; background: linear-gradient(180deg, transparent 0%, rgba(46,117,255,0.06) 50%, transparent 100%); }
     .cta-section h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
     .cta-section p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
-
     footer { border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; color: var(--text-dim); font-size: 0.8rem; }
     footer a { color: var(--text-dim); text-decoration: none; }
     footer a:hover { color: var(--text-muted); }
     .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
-
     @media (max-width: 768px) {
       .pillars, .ahi-grid, .personas, .features, .icp-grid { grid-template-columns: 1fr; }
       .ps-grid { grid-template-columns: 1fr; }
@@ -152,8 +139,7 @@
     <a href="/" class="nav-logo">
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="28" height="28" rx="6" fill="#0F172A"/>
-        <polyline points="2.3,14 7,14 10.1,5.4 13.2,22.6 17.2,9.3 20.2,14 25.7,14"
-          stroke="#2E75FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <polyline points="2.3,14 7,14 10.1,5.4 13.2,22.6 17.2,9.3 20.2,14 25.7,14" stroke="#2E75FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       </svg>
       <span class="nav-logo-text">Partnr</span>
     </a>
@@ -167,9 +153,7 @@
   <div class="hero">
     <div class="hero-badge">Private Beta — Design Partners Open</div>
     <h1>Partnerships run on <em>more</em> than pipeline</h1>
-    <p class="hero-sub">
-      <strong>Revenue is a lagging indicator.</strong> Partnr tracks the certifications, programs, and joint activities that drive it — so you can prove your value long before deals close.
-    </p>
+    <p class="hero-sub"><strong>Revenue is a lagging indicator.</strong> Partnr tracks the certifications, programs, and joint activities that drive it — so you can prove your value long before deals close.</p>
     <div class="hero-buttons">
       <a href="https://app.getpartnr.co/login" class="btn-primary">Start free →</a>
       <a href="#how-it-works" class="btn-secondary">See how it works ↓</a>
@@ -190,34 +174,19 @@
         <div class="pillar-icon">🔧</div>
         <h3>Build</h3>
         <p>Technical integrations, cloud certifications, marketplace listings, and competency programs.</p>
-        <ul>
-          <li>AWS AI Competency</li>
-          <li>Marketplace listings</li>
-          <li>Technical certifications</li>
-          <li>FTR / Technical validation</li>
-        </ul>
+        <ul><li>AWS AI Competency</li><li>Marketplace listings</li><li>Technical certifications</li><li>FTR / Technical validation</li></ul>
       </div>
       <div class="pillar pillar-market">
         <div class="pillar-icon">📣</div>
         <h3>Market</h3>
         <p>Joint content, co-marketing programs, MDF credits, battle kits, and case studies.</p>
-        <ul>
-          <li>Joint case studies</li>
-          <li>MDF fund tracking</li>
-          <li>Co-marketing programs</li>
-          <li>Content pipeline status</li>
-        </ul>
+        <ul><li>Joint case studies</li><li>MDF fund tracking</li><li>Co-marketing programs</li><li>Content pipeline status</li></ul>
       </div>
       <div class="pillar pillar-sell">
         <div class="pillar-icon">💰</div>
         <h3>Sell</h3>
         <p>Co-sell pipeline, deal registrations, marketplace transactions, and revenue attribution.</p>
-        <ul>
-          <li>ACE opportunity tracking</li>
-          <li>Deal registration</li>
-          <li>Co-sell pipeline</li>
-          <li>Revenue attribution</li>
-        </ul>
+        <ul><li>ACE opportunity tracking</li><li>Deal registration</li><li>Co-sell pipeline</li><li>Revenue attribution</li></ul>
       </div>
     </div>
   </section>
@@ -281,7 +250,7 @@
   <section id="who">
     <p class="section-label">Who It's For</p>
     <h2>Built for the people who <em>run</em> partnerships.</h2>
-    <p class="section-sub">Partnr was designed for Series A/B startups with active AWS, Azure, or GCP partnerships — and a team of 1–3 people managing them.</p>
+    <p class="section-sub">Partnr was designed for alliance managers and partnerships teams at any stage — from your first cloud partner program to a full portfolio.</p>
     <div class="personas">
       <div class="persona">
         <div class="persona-role">Primary User</div>
@@ -330,12 +299,12 @@
     <p class="section-label">Ideal Fit</p>
     <h2>Is Partnr right for <em>you?</em></h2>
     <div class="icp-grid">
-      <div class="icp-item"><div class="icp-icon">🚀</div><h4>Series A or B</h4><p>Post-raise budget to invest in tooling. Can't justify enterprise complexity.</p></div>
-      <div class="icp-item"><div class="icp-icon">☁️</div><h4>Active Cloud Partnerships</h4><p>At least one active AWS, Azure, or GCP partner program in flight.</p></div>
-      <div class="icp-item"><div class="icp-icon">📋</div><h4>Managing in Excel</h4><p>Your current stack is a spreadsheet. You know there's a better way.</p></div>
-      <div class="icp-item"><div class="icp-icon">👤</div><h4>1–3 Person Team</h4><p>A dedicated alliance manager or small partnerships team.</p></div>
-      <div class="icp-item"><div class="icp-icon">🔍</div><h4>Pre-Revenue Phase</h4><p>You need to demonstrate partnership value before deals close.</p></div>
-      <div class="icp-item"><div class="icp-icon">📣</div><h4>Leadership Visibility</h4><p>You need to show your work to a CRO or CEO who only cares about revenue.</p></div>
+      <div class="icp-item"><div class="icp-icon">☁️</div><h4>Cloud Partnerships</h4><p>Active AWS, Azure, or GCP partner programs — from first certification to co-sell at scale.</p></div>
+      <div class="icp-item"><div class="icp-icon">📋</div><h4>Beyond the Spreadsheet</h4><p>You're tracking partner programs in Excel or Notion and know there's a better way.</p></div>
+      <div class="icp-item"><div class="icp-icon">🔍</div><h4>Pre-Revenue Visibility</h4><p>You need to demonstrate partnership value to leadership before deals close.</p></div>
+      <div class="icp-item"><div class="icp-icon">🚀</div><h4>Any Stage</h4><p>From your first alliance hire to a full partnerships org — Partnr scales with your team.</p></div>
+      <div class="icp-item"><div class="icp-icon">🤝</div><h4>Any Team Size</h4><p>Solo alliance manager or a team of ten — every user gets their own view, admins see everything.</p></div>
+      <div class="icp-item"><div class="icp-icon">📣</div><h4>Leadership Reporting</h4><p>You need to show your work to a CRO or CEO who only thinks in pipeline and revenue.</p></div>
     </div>
   </section>
 
