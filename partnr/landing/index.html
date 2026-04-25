@@ -229,8 +229,8 @@
 
   <div class="hero">
     <div class="hero-badge">Private Beta — Design Partners Open</div>
-    <h1>Partnerships run on <em>more</em> than pipeline</h1>
-    <p class="hero-sub"><strong>Revenue is a lagging indicator.</strong> Partnr tracks the certifications, programs, and joint activities that drive it — so you can prove your value long before deals close.</p>
+    <h1>Alliance intelligence for the work <em>before</em> the deal.</h1>
+    <p class="hero-sub"><strong>Revenue is a lagging indicator.</strong> Partnr tracks the upstream work behind cloud partnership revenue — the certifications, programs, and joint activities that predict deals weeks before they close.</p>
     <div class="hero-buttons">
       <button type="button" class="btn-primary" data-action="request-access">Request access →</button>
       <a href="#how-it-works" class="btn-secondary">See how it works ↓</a>
@@ -519,7 +519,6 @@
       function closeModal() {
         modal.classList.remove('is-open');
         document.body.style.overflow = '';
-        // Reset state after fade
         setTimeout(function() {
           formWrap.style.display = '';
           successWrap.classList.remove('is-visible');
@@ -530,7 +529,6 @@
         }, 250);
       }
 
-      // Open triggers
       document.querySelectorAll('[data-action="request-access"]').forEach(function(btn) {
         btn.addEventListener('click', function(e) {
           e.preventDefault();
@@ -538,22 +536,18 @@
         });
       });
 
-      // Close triggers
       document.querySelectorAll('[data-action="close-modal"]').forEach(function(btn) {
         btn.addEventListener('click', closeModal);
       });
 
-      // Backdrop click
       modal.addEventListener('click', function(e) {
         if (e.target === modal) closeModal();
       });
 
-      // Escape key
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
       });
 
-      // Form submit
       form.addEventListener('submit', async function(e) {
         e.preventDefault();
         errorEl.style.display = 'none';
