@@ -20,11 +20,13 @@
     }
     html { scroll-behavior: smooth; }
     body { background: var(--navy); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+    /* ── Nav ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 2.5rem; height: 64px;
-      background: rgba(15,23,42,0.85); backdrop-filter: blur(12px);
+      background: rgba(15,23,42,0.9); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
     .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
@@ -32,8 +34,10 @@
     .nav-links { display: flex; align-items: center; gap: 2rem; }
     .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--text); }
-    .nav-cta { background: var(--blue); color: white; padding: 0.5rem 1.25rem; border-radius: 8px; font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: background 0.2s; }
-    .nav-cta:hover { background: var(--blue-dark); }
+    .nav-cta { background: var(--blue); color: white !important; padding: 0.5rem 1.25rem; border-radius: 8px; font-size: 0.875rem; font-weight: 500; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--blue-dark) !important; }
+
+    /* ── Hero ── */
     .hero {
       min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; padding: 8rem 2rem 6rem; position: relative; overflow: hidden;
@@ -52,26 +56,134 @@
     .hero-badge::before { content: '●'; font-size: 0.5rem; }
     h1 { font-family: 'Instrument Serif', serif; font-size: clamp(3rem, 7vw, 5.5rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--text); max-width: 900px; margin-bottom: 1.5rem; }
     h1 em { font-style: italic; color: var(--amber); }
-    .hero-sub { font-size: 1.125rem; color: var(--text-muted); max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.7; }
+    .hero-sub { font-size: 1.125rem; color: var(--text-muted); max-width: 580px; margin: 0 auto 2.5rem; line-height: 1.7; }
     .hero-sub strong { color: var(--text); }
     .hero-buttons { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 1rem; }
+    .hero-meta { font-size: 0.8rem; color: var(--text-dim); }
+
+    /* ── Buttons ── */
     .btn-primary { background: var(--amber); color: #0F172A; padding: 0.85rem 2rem; border-radius: 10px; font-weight: 600; font-size: 1rem; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; border: none; cursor: pointer; font-family: inherit; }
     .btn-primary:hover { background: var(--amber-light); transform: translateY(-1px); }
     .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
     .btn-secondary { color: var(--text-muted); font-size: 1rem; text-decoration: none; transition: color 0.2s; display: inline-flex; align-items: center; gap: 0.4rem; background: none; border: none; cursor: pointer; font-family: inherit; }
     .btn-secondary:hover { color: var(--text); }
-    .hero-meta { font-size: 0.8rem; color: var(--text-dim); }
+    .btn-outline { background: transparent; color: var(--text); padding: 0.85rem 2rem; border-radius: 10px; font-weight: 600; font-size: 1rem; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border-light); cursor: pointer; font-family: inherit; }
+    .btn-outline:hover { border-color: var(--text-muted); transform: translateY(-1px); }
+
+    /* ── Problem strip ── */
     .problem-strip { background: var(--navy-mid); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1.5rem 2rem; text-align: center; }
     .problem-strip p { color: var(--text-muted); font-size: 0.95rem; max-width: 700px; margin: 0 auto; }
     .problem-strip strong { color: var(--text); }
+
+    /* ── Jump nav ── */
+    .jump-nav {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.5rem; flex-wrap: wrap; padding: 1rem 2rem;
+      background: var(--navy); border-bottom: 1px solid var(--border);
+      position: sticky; top: 64px; z-index: 90;
+    }
+    .jump-nav a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: 0.78rem; font-weight: 500;
+      padding: 0.35rem 0.9rem; border-radius: 100px;
+      border: 1px solid var(--border-light);
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .jump-nav a:hover { color: var(--text); border-color: var(--text-dim); background: var(--navy-light); }
+    .jump-nav .jump-divider { width: 1px; height: 16px; background: var(--border-light); margin: 0 0.25rem; }
+
+    /* ── Mode Tabs ── */
+    .mode-tabs-wrap { padding: 4rem 2rem 0; max-width: 1100px; margin: 0 auto; }
+    .mode-tabs {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      border: 1px solid var(--border-light); border-radius: 16px; overflow: hidden;
+      margin-bottom: 3rem;
+    }
+    .mode-tab {
+      padding: 1.75rem 2rem; text-align: left; cursor: pointer;
+      background: var(--navy-mid); border: none; color: var(--text);
+      font-family: inherit; transition: all 0.2s; position: relative;
+    }
+    .mode-tab + .mode-tab { border-left: 1px solid var(--border-light); }
+    .mode-tab-tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.2rem 0.6rem; border-radius: 100px; margin-bottom: 0.5rem;
+    }
+    .mode-tab[data-tab="software"] .mode-tab-tag { background: rgba(46,117,255,0.12); color: var(--blue); }
+    .mode-tab[data-tab="plus"] .mode-tab-tag { background: rgba(212,145,58,0.12); color: var(--amber); }
+    .mode-tab-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.3rem; display: block; }
+    .mode-tab-sub { font-size: 0.82rem; color: var(--text-dim); display: block; }
+    .mode-tab.active[data-tab="software"] { background: rgba(46,117,255,0.06); border-bottom: 3px solid var(--blue); }
+    .mode-tab.active[data-tab="plus"] { background: rgba(212,145,58,0.05); border-bottom: 3px solid var(--amber); }
+    .mode-tab:not(.active) { opacity: 0.6; }
+    .mode-tab:not(.active):hover { opacity: 0.85; }
+
+    /* ── Tab panels ── */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── Software panel ── */
+    .sw-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
+    .sw-card { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; }
+    .sw-card-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .sw-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .sw-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .sw-card ul { list-style: none; margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.35rem; }
+    .sw-card ul li { font-size: 0.82rem; color: var(--text-dim); padding-left: 1rem; position: relative; }
+    .sw-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--border-light); }
+    .sw-who { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .sw-who-card { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+    .sw-who-card .who-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; }
+    .sw-who-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .sw-who-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem; line-height: 1.5; }
+    .sw-wins { display: flex; flex-direction: column; gap: 0.4rem; }
+    .sw-win { font-size: 0.82rem; color: var(--text-muted); padding-left: 1rem; position: relative; }
+    .sw-win::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+
+    /* ── Plus panel ── */
+    .plus-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; margin-bottom: 3rem; }
+    .plus-intro-text h3 { font-family: 'Instrument Serif', serif; font-size: 1.75rem; margin-bottom: 0.75rem; }
+    .plus-intro-text h3 em { font-style: italic; color: var(--amber); }
+    .plus-intro-text p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.25rem; }
+    .plus-who-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .plus-who-item { background: rgba(212,145,58,0.05); border: 1px solid rgba(212,145,58,0.15); border-radius: 10px; padding: 1rem 1.25rem; }
+    .plus-who-item h5 { font-size: 0.875rem; font-weight: 600; color: var(--amber); margin-bottom: 0.2rem; }
+    .plus-who-item p { font-size: 0.82rem; color: var(--text-muted); }
+    .sessions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem; }
+    .session-card { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: border-color 0.2s; }
+    .session-card:hover { border-color: rgba(212,145,58,0.3); }
+    .session-num { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.5rem; }
+    .session-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.25rem; }
+    .session-timeline { font-size: 0.78rem; color: var(--text-dim); margin-bottom: 1.25rem; }
+    .session-deliverables { display: flex; flex-direction: column; gap: 0.5rem; }
+    .session-deliverable { font-size: 0.82rem; color: var(--text-muted); padding-left: 1rem; position: relative; line-height: 1.5; }
+    .session-deliverable::before { content: '→'; position: absolute; left: 0; color: var(--amber); font-weight: 600; }
+    .kit-card {
+      background: linear-gradient(135deg, rgba(212,145,58,0.08) 0%, rgba(46,117,255,0.05) 100%);
+      border: 1px solid rgba(212,145,58,0.25); border-radius: 16px;
+      padding: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem;
+    }
+    .kit-card h3 { font-family: 'Instrument Serif', serif; font-size: 1.5rem; margin-bottom: 0.4rem; }
+    .kit-card p { font-size: 0.9rem; color: var(--text-muted); max-width: 520px; }
+    .plus-experts {
+      margin-top: 1.5rem; padding: 1.25rem 1.75rem;
+      background: var(--navy-mid); border: 1px solid var(--border); border-radius: 12px;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .plus-experts p { font-size: 0.875rem; color: var(--text-muted); }
+    .plus-experts strong { color: var(--text); }
+
+    /* ── Common sections ── */
     section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
     .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 1rem; }
     h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 1rem; }
     h2 em { font-style: italic; color: var(--amber); }
     .section-sub { color: var(--text-muted); font-size: 1.05rem; max-width: 560px; line-height: 1.7; margin-bottom: 3rem; }
+
+    /* Build/Market/Sell */
     .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .pillar { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: border-color 0.2s; }
-    .pillar:hover { border-color: var(--border-light); }
+    .pillar { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
     .pillar-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1rem; }
     .pillar-build .pillar-icon { background: rgba(59,130,246,0.15); }
     .pillar-market .pillar-icon { background: rgba(139,92,246,0.15); }
@@ -84,6 +196,8 @@
     .pillar ul { list-style: none; margin-top: 1rem; }
     .pillar ul li { font-size: 0.85rem; color: var(--text-dim); padding: 0.25rem 0; border-top: 1px solid var(--border); }
     .pillar ul li::before { content: '→ '; color: var(--border-light); }
+
+    /* Problem/Solution */
     .ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
     .problem-list, .solution-list { display: flex; flex-direction: column; gap: 1rem; }
     .problem-item { background: rgba(220,38,38,0.05); border: 1px solid rgba(220,38,38,0.15); border-radius: 12px; padding: 1.25rem 1.5rem; }
@@ -92,6 +206,8 @@
     .solution-item { background: rgba(22,163,74,0.05); border: 1px solid rgba(22,163,74,0.15); border-radius: 12px; padding: 1.25rem 1.5rem; }
     .solution-item h4 { font-size: 0.9rem; font-weight: 600; color: #4ADE80; margin-bottom: 0.25rem; }
     .solution-item p { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* AHI */
     .ahi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     .ahi-card { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 16px; padding: 1.75rem; }
     .ahi-score { font-size: 2.5rem; font-weight: 700; line-height: 1; margin-bottom: 0.25rem; }
@@ -100,26 +216,13 @@
     .ahi-bar-label { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.3rem; }
     .ahi-bar { height: 4px; background: var(--navy-light); border-radius: 2px; overflow: hidden; }
     .ahi-bar-fill { height: 100%; border-radius: 2px; }
-    .personas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-    .persona { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
-    .persona-role { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; }
-    .persona h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; }
-    .persona p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; }
-    .persona-wins { display: flex; flex-direction: column; gap: 0.5rem; }
-    .persona-win { font-size: 0.85rem; color: var(--text-muted); padding-left: 1rem; position: relative; }
-    .persona-win::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 600; }
-    .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-    .feature { padding: 0.5rem; }
-    .feature-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
-    .feature h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
-    .feature p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* Benefits */
     .benefits-callout {
       background: linear-gradient(135deg, rgba(46,117,255,0.08) 0%, rgba(212,145,58,0.06) 100%);
       border: 1px solid rgba(46,117,255,0.2); border-radius: 20px; padding: 3rem;
       display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
     }
-    .benefits-callout h2 { margin-bottom: 0.75rem; }
-    .benefits-callout .section-label { margin-bottom: 0.75rem; }
     .benefits-list { display: flex; flex-direction: column; gap: 1rem; }
     .benefit-item { display: flex; align-items: flex-start; gap: 0.75rem; }
     .benefit-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
@@ -128,59 +231,52 @@
     .benefit-icon.next { background: rgba(212,145,58,0.15); }
     .benefit-item h5 { font-size: 0.9rem; font-weight: 600; color: var(--text); margin-bottom: 0.2rem; }
     .benefit-item p { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* Who it's for */
+    .personas { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .persona { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; }
+    .persona.si-card { border-color: rgba(139,92,246,0.25); background: linear-gradient(135deg, rgba(139,92,246,0.04) 0%, var(--navy-mid) 60%); }
+    .persona-role { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); margin-bottom: 0.5rem; }
+    .persona-role.purple { color: #8B5CF6; }
+    .persona-role.amber { color: var(--amber); }
+    .persona h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; }
+    .persona p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem; }
+    .persona-wins { display: flex; flex-direction: column; gap: 0.5rem; }
+    .persona-win { font-size: 0.85rem; color: var(--text-muted); padding-left: 1rem; position: relative; }
+    .persona-win::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: 600; }
+
+    /* ICP */
     .icp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
     .icp-item { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-align: center; }
     .icp-item .icp-icon { font-size: 2rem; margin-bottom: 0.75rem; }
     .icp-item h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.4rem; }
     .icp-item p { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* CTA */
     .cta-section { text-align: center; padding: 8rem 2rem; background: linear-gradient(180deg, transparent 0%, rgba(46,117,255,0.06) 50%, transparent 100%); }
     .cta-section h2 { font-family: 'Instrument Serif', serif; font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 1rem; }
-    .cta-section p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .cta-section p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2.5rem; max-width: 540px; margin-left: auto; margin-right: auto; }
+    .cta-buttons { display: flex; align-items: center; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
     footer { border-top: 1px solid var(--border); padding: 2rem 2.5rem; display: flex; align-items: center; justify-content: space-between; color: var(--text-dim); font-size: 0.8rem; }
     footer a { color: var(--text-dim); text-decoration: none; }
     footer a:hover { color: var(--text-muted); }
     .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
 
-    /* ===== Modal ===== */
-    .modal-overlay {
-      position: fixed; inset: 0; z-index: 1000;
-      background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(8px);
-      display: none; align-items: center; justify-content: center;
-      padding: 2rem; opacity: 0; transition: opacity 0.2s;
-    }
+    /* Modal */
+    .modal-overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(15,23,42,0.85); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; padding: 2rem; opacity: 0; transition: opacity 0.2s; }
     .modal-overlay.is-open { display: flex; opacity: 1; }
-    .modal-content {
-      background: var(--navy-mid); border: 1px solid var(--border-light);
-      border-radius: 20px; padding: 2.5rem; max-width: 520px; width: 100%;
-      max-height: calc(100vh - 4rem); overflow-y: auto; position: relative;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    }
-    .modal-close-x {
-      position: absolute; top: 1rem; right: 1rem;
-      width: 32px; height: 32px; border-radius: 8px;
-      background: transparent; border: none; color: var(--text-muted);
-      font-size: 1.25rem; cursor: pointer; transition: all 0.2s;
-      display: flex; align-items: center; justify-content: center;
-    }
+    .modal-content { background: var(--navy-mid); border: 1px solid var(--border-light); border-radius: 20px; padding: 2.5rem; max-width: 520px; width: 100%; max-height: calc(100vh - 4rem); overflow-y: auto; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+    .modal-close-x { position: absolute; top: 1rem; right: 1rem; width: 32px; height: 32px; border-radius: 8px; background: transparent; border: none; color: var(--text-muted); font-size: 1.25rem; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
     .modal-close-x:hover { background: var(--navy-light); color: var(--text); }
     .modal-content .section-label { margin-bottom: 0.75rem; }
     .modal-content h2 { font-size: 2rem; margin-bottom: 0.75rem; }
-    .modal-content > .modal-form-wrap > p,
-    .modal-content > .modal-success > p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.75rem; line-height: 1.6; }
+    .modal-content > .modal-form-wrap > p, .modal-content > .modal-success > p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.75rem; line-height: 1.6; }
     .modal-content form { display: flex; flex-direction: column; gap: 1rem; }
     .form-row { display: flex; flex-direction: column; gap: 0.4rem; }
     .form-row label { font-size: 0.8rem; font-weight: 500; color: var(--text-muted); }
-    .form-row input, .form-row select, .form-row textarea {
-      background: var(--navy); border: 1px solid var(--border-light);
-      border-radius: 8px; padding: 0.65rem 0.85rem;
-      color: var(--text); font-family: inherit; font-size: 0.95rem;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      width: 100%;
-    }
-    .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
-      outline: none; border-color: var(--amber);
-      box-shadow: 0 0 0 3px rgba(212,145,58,0.15);
-    }
+    .form-row input, .form-row select, .form-row textarea { background: var(--navy); border: 1px solid var(--border-light); border-radius: 8px; padding: 0.65rem 0.85rem; color: var(--text); font-family: inherit; font-size: 0.95rem; transition: border-color 0.2s, box-shadow 0.2s; width: 100%; }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus { outline: none; border-color: var(--amber); box-shadow: 0 0 0 3px rgba(212,145,58,0.15); }
     .form-row textarea { resize: vertical; min-height: 70px; font-family: inherit; }
     .form-row select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%2394A3B8' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.85rem center; padding-right: 2.25rem; }
     .modal-content button[type="submit"] { width: 100%; justify-content: center; margin-top: 0.5rem; }
@@ -188,23 +284,22 @@
     .form-error { background: rgba(220,38,38,0.1); border: 1px solid rgba(220,38,38,0.25); color: #FCA5A5; padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.85rem; }
     .modal-success { display: none; text-align: center; }
     .modal-success.is-visible { display: block; }
-    .success-icon {
-      width: 56px; height: 56px; border-radius: 50%;
-      background: rgba(22,163,74,0.15); color: #4ADE80;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.25rem; font-size: 1.75rem; font-weight: 700;
-    }
+    .success-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(22,163,74,0.15); color: #4ADE80; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-size: 1.75rem; font-weight: 700; }
     .modal-success h2 { margin-bottom: 0.75rem; }
     .modal-success a { color: var(--amber); text-decoration: none; }
-    .modal-success a:hover { text-decoration: underline; }
     .modal-success button { margin-top: 1.5rem; }
 
     @media (max-width: 768px) {
-      .pillars, .ahi-grid, .personas, .features, .icp-grid, .benefits-callout { grid-template-columns: 1fr; }
-      .ps-grid { grid-template-columns: 1fr; }
+      .pillars, .ahi-grid, .personas, .icp-grid, .benefits-callout,
+      .sw-grid, .sw-who, .sessions-grid, .ps-grid, .plus-intro { grid-template-columns: 1fr; }
+      .mode-tabs { grid-template-columns: 1fr; }
+      .mode-tab + .mode-tab { border-left: none; border-top: 1px solid var(--border-light); }
+      .kit-card { flex-direction: column; align-items: flex-start; }
       nav { padding: 0 1.25rem; }
       .nav-links { gap: 1rem; }
       section { padding: 4rem 1.25rem; }
+      .mode-tabs-wrap { padding: 2rem 1.25rem 0; }
+      .jump-nav { gap: 0.4rem; padding: 0.75rem 1rem; }
       .modal-overlay { padding: 1rem; }
       .modal-content { padding: 1.75rem; }
     }
@@ -214,7 +309,7 @@
 
   <nav>
     <a href="/" class="nav-logo">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
         <rect width="28" height="28" rx="6" fill="#0F172A"/>
         <polyline points="2.3,14 7,14 10.1,5.4 13.2,22.6 17.2,9.3 20.2,14 25.7,14" stroke="#2E75FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       </svg>
@@ -222,73 +317,297 @@
     </a>
     <div class="nav-links">
       <a href="#how-it-works">How it works</a>
+      <a href="#partnr-plus">Partnr Plus</a>
       <a href="#who">Who it's for</a>
       <a href="https://app.getpartnr.co/login" class="nav-cta">Sign in →</a>
     </div>
   </nav>
 
+  <!-- HERO -->
   <div class="hero">
-    <div class="hero-badge">Private Beta — Design Partners Open</div>
+    <div class="hero-badge">Private Beta · Partnr Plus Professional Services Available</div>
     <h1>Alliance intelligence for the work <em>before</em> the deal.</h1>
     <p class="hero-sub"><strong>Revenue is a lagging indicator.</strong> Partnr tracks the upstream work behind cloud partnership revenue — the certifications, programs, and joint activities that predict deals weeks before they close.</p>
     <div class="hero-buttons">
-      <button type="button" class="btn-primary" data-action="request-access">Request access →</button>
-      <a href="#how-it-works" class="btn-secondary">See how it works ↓</a>
+      <button type="button" class="btn-primary" data-action="request-access">Request software access →</button>
+      <a href="#partnr-plus" class="btn-secondary">Explore Partnr Plus ↓</a>
     </div>
-    <p class="hero-meta">Currently invite-only · Limited design partner spots</p>
+    <p class="hero-meta">Private beta · Design partner spots open · Partnr Plus sessions available now</p>
   </div>
 
   <div class="problem-strip">
-    <p>Every existing tool tracks <strong>one thing: co-sell revenue</strong>. Alliance managers responsible for certifications, integrations, MDF, and joint content are stuck in Excel — and six-figure benefits go unclaimed every year. Partnr was built to fix that.</p>
+    <p>Every existing tool tracks <strong>one thing: co-sell revenue</strong>. Alliance managers and SIs responsible for certifications, integrations, MDF, and joint content are stuck in Excel — and six-figure benefits go unclaimed every year.</p>
   </div>
 
+  <!-- JUMP NAV -->
+  <div class="jump-nav">
+    <a href="#software-tab" onclick="switchTab('software');return false;">Partnr Software</a>
+    <a href="#partnr-plus" onclick="switchTab('plus');return false;">Partnr Plus</a>
+    <div class="jump-divider"></div>
+    <a href="#how-it-works">How it works</a>
+    <a href="#ahi-section">AHI Score</a>
+    <a href="#benefits-section">Benefits Intelligence</a>
+    <a href="#who">Who it's for</a>
+    <a href="#cta-bottom">Get started</a>
+  </div>
+
+  <!-- MODE TABS -->
+  <div class="mode-tabs-wrap" id="software-tab">
+    <div class="mode-tabs">
+      <button class="mode-tab active" data-tab="software" onclick="switchTab('software')">
+        <div class="mode-tab-tag">Partnr Software</div>
+        <span class="mode-tab-title">Self-serve alliance intelligence</span>
+        <span class="mode-tab-sub">For ISVs, SIs, and partnerships teams who need a system of record</span>
+      </button>
+      <button class="mode-tab" data-tab="plus" onclick="switchTab('plus')">
+        <div class="mode-tab-tag">Partnr Plus — Professional Services</div>
+        <span class="mode-tab-title">Expert-led sessions</span>
+        <span class="mode-tab-sub">For teams that need to accelerate and can't do it alone</span>
+      </button>
+    </div>
+
+    <!-- SOFTWARE PANEL -->
+    <div class="tab-panel active" id="panel-software">
+      <div class="sw-grid">
+        <div class="sw-card">
+          <div class="sw-card-icon">📊</div>
+          <h3>Program Tracking</h3>
+          <p>Every initiative with lifecycle stages, milestone checklists, owners, and target dates. ISV certifications, SI competencies, marketplace listings — all in one place.</p>
+          <ul>
+            <li>Lifecycle stages from Initiated to Benefit Realized</li>
+            <li>Task checklists — upload any spreadsheet, Claude extracts requirements</li>
+            <li>Stall alerts when programs haven't moved in 14+ days</li>
+          </ul>
+        </div>
+        <div class="sw-card">
+          <div class="sw-card-icon">📈</div>
+          <h3>Alliance Health Index</h3>
+          <p>A live composite score for every cloud partner relationship — built from leading indicators, not revenue. Know which partnerships are gaining momentum and which are at risk.</p>
+          <ul>
+            <li>Program velocity, revenue attribution, risk signals</li>
+            <li>Certification and milestone tracking</li>
+            <li>30-day sparkline trend per partner</li>
+          </ul>
+        </div>
+        <div class="sw-card">
+          <div class="sw-card-icon">🎯</div>
+          <h3>Benefits Intelligence</h3>
+          <p>Surfaces every benefit you've earned but haven't claimed — MDF wallets, co-sell activations, funding eligibility — with the exact next step and dollar value at stake.</p>
+          <ul>
+            <li>Unlocked benefits not yet activated</li>
+            <li>MDF and credits expiring soon</li>
+            <li>Next unlock with highest downstream value</li>
+          </ul>
+        </div>
+        <div class="sw-card">
+          <div class="sw-card-icon">🧠</div>
+          <h3>AI Snapshot Reports</h3>
+          <p>Auto-generated weekly briefings covering program progress, credits secured, and attributed pipeline. Ready for your CRO every Friday — written automatically.</p>
+        </div>
+        <div class="sw-card">
+          <div class="sw-card-icon">👥</div>
+          <h3>Team Workspaces</h3>
+          <p>Multi-user orgs with role-based access. Every activity attributed to the right person. Admins see everything; members see their own work.</p>
+        </div>
+        <div class="sw-card">
+          <div class="sw-card-icon">📥</div>
+          <h3>Smart Import</h3>
+          <p>Upload your existing partner data or any requirements spreadsheet — AWS competency checklist, MAP requirements, custom tracker. Claude maps the columns automatically.</p>
+        </div>
+      </div>
+
+      <p class="section-label" style="margin-bottom:1.25rem;">Works for ISVs and SIs</p>
+      <div class="sw-who">
+        <div class="sw-who-card">
+          <div class="who-label">ISV / SaaS</div>
+          <h4>Independent Software Vendors</h4>
+          <p>Track your path from FTR to ISV Accelerate to Competency. Every program milestone, MDF dollar, and co-sell opportunity in one system.</p>
+          <div class="sw-wins">
+            <div class="sw-win">FTR → ISV Accelerate → Competency pipeline</div>
+            <div class="sw-win">MDF wallet tracking and expiry alerts</div>
+            <div class="sw-win">Marketplace listing status and co-sell readiness</div>
+            <div class="sw-win">ACE opportunity pipeline and attribution</div>
+          </div>
+        </div>
+        <div class="sw-who-card">
+          <div class="who-label" style="color:#8B5CF6;">SI / Consulting Partner</div>
+          <h4>Systems Integrators</h4>
+          <p>Manage consulting partner tier progression, practice competencies, and MAP engagements across AWS, Azure, and GCP — without losing track of what's in progress.</p>
+          <div class="sw-wins">
+            <div class="sw-win">Consulting partner tier progression (Select → Advanced → Premier)</div>
+            <div class="sw-win">Practice competency requirements and submission tracking</div>
+            <div class="sw-win">MAP, PSF, and DAF funding programs tracked per engagement</div>
+            <div class="sw-win">PDM relationship health and co-sell activity logging</div>
+          </div>
+        </div>
+        <div class="sw-who-card">
+          <div class="who-label" style="color:#10B981;">Multi-Cloud</div>
+          <h4>Managing Multiple Clouds</h4>
+          <p>AWS, Azure, and GCP in a single dashboard. AHI scores per cloud, benefits intelligence per partner, and a Build/Market/Sell view for every stakeholder.</p>
+          <div class="sw-wins">
+            <div class="sw-win">Per-cloud AHI scores and health trending</div>
+            <div class="sw-win">Cross-cloud program and activity view</div>
+            <div class="sw-win">Benefits Intelligence for AWS, Azure, and GCP</div>
+            <div class="sw-win">Weekly snapshot across the full portfolio</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:2.5rem;text-align:center;">
+        <button type="button" class="btn-primary" data-action="request-access">Request software access →</button>
+      </div>
+    </div>
+
+    <!-- PARTNR PLUS PANEL -->
+    <div class="tab-panel" id="panel-plus" id="partnr-plus">
+      <div class="plus-intro">
+        <div class="plus-intro-text">
+          <p class="section-label">Partnr Plus — Professional Services</p>
+          <h3>Expert-led sessions.<br><em>Real results.</em></h3>
+          <p>Partnr Plus is our professional services model. Three structured sessions delivered by certified cloud alliance experts — AWS, Azure, and GCP — that get your partnerships built, activated, and earning. Everything tracked inside Partnr from day one.</p>
+          <a href="mailto:hello@getpartnr.co?subject=Partnr Plus Inquiry" class="btn-primary">Book a session →</a>
+        </div>
+        <div>
+          <p style="font-size:0.78rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-dim);margin-bottom:1rem;">Partnr Plus is built for</p>
+          <div class="plus-who-list">
+            <div class="plus-who-item">
+              <h5>New cloud partners — ISV or SI</h5>
+              <p>You're enrolled in a cloud partner program but not earning yet. Sessions get you through certifications, co-sell setup, and first registrations in weeks.</p>
+            </div>
+            <div class="plus-who-item">
+              <h5>Overloaded partnerships teams</h5>
+              <p>You know what needs to happen — you just don't have bandwidth. Bring in experts to execute the work your team can't get to.</p>
+            </div>
+            <div class="plus-who-item">
+              <h5>SIs building a cloud practice</h5>
+              <p>Competency applications, MAP enrollment, consulting partner tier progression — expert guidance to accelerate your practice without guessing what comes next.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sessions-grid">
+        <div class="session-card">
+          <div class="session-num">Session 1</div>
+          <h3>Foundation</h3>
+          <div class="session-timeline">Weeks 1–2</div>
+          <div class="session-deliverables">
+            <div class="session-deliverable">Better Together Story — written and ready for co-sell pitches</div>
+            <div class="session-deliverable">Partnership path recommendation (tier, program, target)</div>
+            <div class="session-deliverable">PDM engagement plan with cadence and talking points</div>
+            <div class="session-deliverable">Gap assessment with prioritized fix list</div>
+            <div class="session-deliverable">Partnr configured with programs, KPIs, and 90-day roadmap</div>
+          </div>
+        </div>
+        <div class="session-card">
+          <div class="session-num">Session 2</div>
+          <h3>Activation</h3>
+          <div class="session-timeline">Weeks 3–5</div>
+          <div class="session-deliverables">
+            <div class="session-deliverable">Co-sell program enrollment completed or unblocked</div>
+            <div class="session-deliverable">First opportunities registered and formatted correctly</div>
+            <div class="session-deliverable">MDF / PSF / DAF wallet reviewed — unclaimed funds identified and filed</div>
+            <div class="session-deliverable">Co-sell pitch deck your cloud sellers will actually use</div>
+            <div class="session-deliverable">Marketplace or practice listing review and next steps</div>
+          </div>
+        </div>
+        <div class="session-card">
+          <div class="session-num">Session 3</div>
+          <h3>Growth</h3>
+          <div class="session-timeline">Weeks 6–9</div>
+          <div class="session-deliverables">
+            <div class="session-deliverable">Competency application strategy with gap analysis and timeline</div>
+            <div class="session-deliverable">Joint marketing plan with funded campaign outlined</div>
+            <div class="session-deliverable">Sales team co-sell training — what to say, when to loop in the cloud partner</div>
+            <div class="session-deliverable">Leadership reporting template — the brief that gets read</div>
+            <div class="session-deliverable">12-month partnership milestone calendar</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="kit-card">
+        <div>
+          <h3>Full Launch Kit</h3>
+          <p>The complete cloud partnership buildout from Foundation through Growth. Book all three sessions as a package — Partnr software included for the engagement duration so your progress is tracked from day one.</p>
+        </div>
+        <div style="flex-shrink:0;">
+          <a href="mailto:hello@getpartnr.co?subject=Partnr Plus Inquiry" class="btn-primary">Book a session →</a>
+        </div>
+      </div>
+
+      <div class="plus-experts">
+        <div style="font-size:1.5rem;">🎓</div>
+        <p>Sessions delivered by <strong>certified cloud alliance experts</strong> with 10+ years of AWS, Azure, and GCP partnership experience — ISV programs, SI practice builds, and co-sell motions across dozens of companies.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" style="margin-top:4rem;" />
+
+  <!-- HOW IT WORKS -->
   <section id="how-it-works">
     <p class="section-label">The Framework</p>
     <h2>Build. Market. <em>Sell.</em></h2>
-    <p class="section-sub">Every program, activity, and report in Partnr maps to one of three dimensions — giving you a single source of truth for every stakeholder conversation.</p>
+    <p class="section-sub">Every program, activity, and report in Partnr maps to one of three dimensions — for ISVs and SIs alike — giving you a single source of truth for every stakeholder conversation.</p>
     <div class="pillars">
       <div class="pillar pillar-build">
         <div class="pillar-icon">🔧</div>
         <h3>Build</h3>
-        <p>Technical integrations, cloud certifications, marketplace listings, and competency programs.</p>
-        <ul><li>AWS AI Competency</li><li>Marketplace listings</li><li>Technical certifications</li><li>FTR / Technical validation</li></ul>
+        <p>Technical integrations, cloud certifications, practice competencies, marketplace listings, and MAP/PSF programs.</p>
+        <ul>
+          <li>AWS AI Competency / Practice certifications</li>
+          <li>Marketplace listings and FTR validation</li>
+          <li>MAP and consulting partner programs</li>
+          <li>Competency requirements tracking</li>
+        </ul>
       </div>
       <div class="pillar pillar-market">
         <div class="pillar-icon">📣</div>
         <h3>Market</h3>
-        <p>Joint content, co-marketing programs, MDF credits, battle kits, and case studies.</p>
-        <ul><li>Joint case studies</li><li>MDF fund tracking</li><li>Co-marketing programs</li><li>Content pipeline status</li></ul>
+        <p>Joint content, co-marketing programs, MDF / PSF / DAF credits, battle kits, and case studies.</p>
+        <ul>
+          <li>Joint case studies and content</li>
+          <li>MDF, PSF, and DAF fund tracking</li>
+          <li>Co-marketing programs</li>
+          <li>Partner-funded campaigns</li>
+        </ul>
       </div>
       <div class="pillar pillar-sell">
         <div class="pillar-icon">💰</div>
         <h3>Sell</h3>
-        <p>Co-sell pipeline, deal registrations, marketplace transactions, and revenue attribution.</p>
-        <ul><li>ACE opportunity tracking</li><li>Deal registration</li><li>Co-sell pipeline</li><li>Revenue attribution</li></ul>
+        <p>Co-sell pipeline, deal registrations, marketplace transactions, and revenue attribution across all clouds.</p>
+        <ul>
+          <li>ACE / partner opportunity tracking</li>
+          <li>Deal registration and co-sell readiness</li>
+          <li>Pipeline by cloud and program</li>
+          <li>Revenue attribution</li>
+        </ul>
       </div>
     </div>
   </section>
 
   <hr class="divider" />
 
+  <!-- PROBLEM / SOLUTION -->
   <section>
     <p class="section-label">The Problem</p>
     <h2>Alliance managers are flying <em>blind.</em></h2>
-    <p class="section-sub">The 3–6 month window between partnership activity and closed revenue is where alliance managers lose their jobs. Partnr makes that window visible.</p>
+    <p class="section-sub">The 3–6 month window between partnership activity and closed revenue is where alliance managers and SI practices lose their credibility. Partnr makes that window visible.</p>
     <div class="ps-grid">
       <div>
         <p style="font-size:0.8rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;margin-bottom:1rem;">Without Partnr</p>
         <div class="problem-list">
-          <div class="problem-item"><h4>Invisible work</h4><p>Certifications, MDF, and integration work don't show up in any CRM — so leadership can't see it.</p></div>
+          <div class="problem-item"><h4>Invisible work</h4><p>Certifications, MDF, MAP programs, and integration work don't show up in any CRM — so leadership can't see it.</p></div>
           <div class="problem-item"><h4>Excel everywhere</h4><p>Partner programs tracked in spreadsheets that break, go stale, and can't be reported on.</p></div>
           <div class="problem-item"><h4>Revenue-only metrics</h4><p>Every existing tool measures only pipeline and closed revenue — lagging indicators that come too late.</p></div>
-          <div class="problem-item"><h4>Benefits left on the table</h4><p>MDF wallets expire unclaimed. Co-sell status is earned but never activated. Six-figure opportunities quietly disappear.</p></div>
+          <div class="problem-item"><h4>Benefits left on the table</h4><p>MDF wallets expire unclaimed. Co-sell status earned but never activated. PSF and DAF funding missed. Six figures quietly disappear.</p></div>
         </div>
       </div>
       <div>
         <p style="font-size:0.8rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;margin-bottom:1rem;">With Partnr</p>
         <div class="solution-list">
-          <div class="solution-item"><h4>Leading indicators</h4><p>Track the upstream activities — certs, integrations, content — that predict revenue outcomes weeks in advance.</p></div>
-          <div class="solution-item"><h4>Structured programs</h4><p>Every initiative has a lifecycle, an owner, milestones, and progress — like opportunities, but for partnerships.</p></div>
+          <div class="solution-item"><h4>Leading indicators</h4><p>Track the upstream activities — certs, integrations, content, MAP programs — that predict revenue outcomes weeks in advance.</p></div>
+          <div class="solution-item"><h4>Structured programs</h4><p>Every initiative has a lifecycle, an owner, milestones, and progress — like opportunities, but for partnership maturity.</p></div>
           <div class="solution-item"><h4>AHI scoring</h4><p>Alliance Health Index gives every partner relationship a live score across velocity, revenue, risk, and milestones.</p></div>
           <div class="solution-item"><h4>Benefits Intelligence</h4><p>Surfaces every benefit you've earned but haven't claimed — with the exact next step and dollar value at stake.</p></div>
         </div>
@@ -298,7 +617,8 @@
 
   <hr class="divider" />
 
-  <section>
+  <!-- AHI -->
+  <section id="ahi-section">
     <p class="section-label">Alliance Health Index</p>
     <h2>A score for every <em>partnership.</em></h2>
     <p class="section-sub">AHI is a composite health score built from four leading indicators — not revenue. It tells you which partnerships are gaining momentum and which are quietly stalling.</p>
@@ -308,7 +628,7 @@
         <div class="ahi-label">Amazon Web Services · Grade A</div>
         <div class="ahi-bar-wrap"><div class="ahi-bar-label"><span>Program Velocity</span><span style="color:#16A34A">91</span></div><div class="ahi-bar"><div class="ahi-bar-fill" style="width:91%;background:#16A34A"></div></div></div>
         <div class="ahi-bar-wrap"><div class="ahi-bar-label"><span>Revenue Attribution</span><span style="color:#65A30D">78</span></div><div class="ahi-bar"><div class="ahi-bar-fill" style="width:78%;background:#65A30D"></div></div></div>
-        <div class="ahi-bar-wrap"><div class="ahi-bar-label"><span>Risk & Stall Signals</span><span style="color:#16A34A">82</span></div><div class="ahi-bar"><div class="ahi-bar-fill" style="width:82%;background:#16A34A"></div></div></div>
+        <div class="ahi-bar-wrap"><div class="ahi-bar-label"><span>Risk &amp; Stall Signals</span><span style="color:#16A34A">82</span></div><div class="ahi-bar"><div class="ahi-bar-fill" style="width:82%;background:#16A34A"></div></div></div>
         <div class="ahi-bar-wrap"><div class="ahi-bar-label"><span>Certifications</span><span style="color:#16A34A">85</span></div><div class="ahi-bar"><div class="ahi-bar-fill" style="width:85%;background:#16A34A"></div></div></div>
       </div>
       <div class="ahi-card">
@@ -316,7 +636,7 @@
         <div class="ahi-label">Microsoft Azure · Grade C</div>
         <div class="ahi-bar-wrap"><div class="ahi-bar-label"><span>Program Velocity</span><span style="color:#EA580C">38</span></div><div class="ahi-bar"><div class="ahi-bar-fill" style="width:38%;background:#EA580C"></div></div></div>
         <div class="ahi-bar-wrap"><div class="ahi-bar-label"><span>Revenue Attribution</span><span style="color:#D97706">55</span></div><div class="ahi-bar"><div class="ahi-bar-fill" style="width:55%;background:#D97706"></div></div></div>
-        <div class="ahi-bar-wrap"><div class="ahi-bar-label"><span>Risk & Stall Signals</span><span style="color:#D97706">48</span></div><div class="ahi-bar"><div class="ahi-bar-fill" style="width:48%;background:#D97706"></div></div></div>
+        <div class="ahi-bar-wrap"><div class="ahi-bar-label"><span>Risk &amp; Stall Signals</span><span style="color:#D97706">48</span></div><div class="ahi-bar"><div class="ahi-bar-fill" style="width:48%;background:#D97706"></div></div></div>
         <div class="ahi-bar-wrap"><div class="ahi-bar-label"><span>Certifications</span><span style="color:#D97706">62</span></div><div class="ahi-bar"><div class="ahi-bar-fill" style="width:62%;background:#D97706"></div></div></div>
       </div>
     </div>
@@ -324,12 +644,13 @@
 
   <hr class="divider" />
 
-  <section>
+  <!-- BENEFITS -->
+  <section id="benefits-section">
     <div class="benefits-callout">
       <div>
         <p class="section-label">Benefits Intelligence</p>
         <h2>Know what you've earned.<br><em>Claim what you're owed.</em></h2>
-        <p style="color:var(--text-muted);font-size:1rem;line-height:1.7;margin-bottom:1.5rem;">Most alliance managers leave six-figure benefits on the table every year — MDF wallets that expire unclaimed, co-sell status earned but never activated, marketplace credits sitting untouched. Partnr surfaces exactly what you've unlocked, what you're close to unlocking, and what's about to expire.</p>
+        <p style="color:var(--text-muted);font-size:1rem;line-height:1.7;margin-bottom:1.5rem;">Most alliance managers and SI practices leave six-figure benefits on the table every year — MDF wallets that expire, co-sell status earned but never activated, PSF and DAF funding never claimed. Partnr surfaces exactly what you've unlocked and what's about to expire.</p>
         <button type="button" class="btn-primary" data-action="request-access">Request access →</button>
       </div>
       <div class="benefits-list">
@@ -344,7 +665,7 @@
           <div class="benefit-icon expiring">⏰</div>
           <div>
             <h5>$24,000 MDF expiring in 38 days</h5>
-            <p>AWS MDF wallets expire December 31 with no carryover. Claim requests close November 15.</p>
+            <p>MDF wallets expire December 31 with no carryover. Claim requests close November 15.</p>
           </div>
         </div>
         <div class="benefit-item">
@@ -357,8 +678,8 @@
         <div class="benefit-item">
           <div class="benefit-icon unlocked">🔓</div>
           <div>
-            <h5>$126K in ISV Success benefits unclaimed</h5>
-            <p>Free 12-month program with Azure credits, GitHub Enterprise, and 50 technical consultation hours. Enrollment is open.</p>
+            <h5>PSF funding available — not yet claimed</h5>
+            <p>You're eligible for Google Cloud Partner Services Funds. Use Consumption Packs for faster approval.</p>
           </div>
         </div>
       </div>
@@ -367,24 +688,37 @@
 
   <hr class="divider" />
 
+  <!-- WHO IT'S FOR -->
   <section id="who">
     <p class="section-label">Who It's For</p>
-    <h2>Built for the people who <em>run</em> partnerships.</h2>
-    <p class="section-sub">Partnr was designed for alliance managers and partnerships teams at any stage — from your first cloud partner program to a full portfolio.</p>
+    <h2>Built for every cloud partnership <em>model.</em></h2>
+    <p class="section-sub">ISVs, SIs, and multi-cloud teams — Partnr tracks what drives partnership outcomes regardless of how you go to market.</p>
     <div class="personas">
       <div class="persona">
-        <div class="persona-role">Primary User</div>
-        <h3>Alliance Manager</h3>
+        <div class="persona-role">Partnr Software</div>
+        <h3>The Alliance Manager</h3>
         <p>You manage certifications, MDF, co-sell, and joint content across 1–3 cloud partners. Your work is invisible until deals close. Partnr changes that.</p>
         <div class="persona-wins">
           <div class="persona-win">Track every program with a lifecycle and milestone checklist</div>
           <div class="persona-win">Surface benefits you've earned but haven't claimed</div>
-          <div class="persona-win">Get AI-written briefings that make your work visible to leadership</div>
-          <div class="persona-win">See stall alerts before partnerships go cold</div>
+          <div class="persona-win">AI-written briefings that make your work visible to leadership</div>
+          <div class="persona-win">Stall alerts before partnerships go cold</div>
+        </div>
+      </div>
+      <div class="persona si-card">
+        <div class="persona-role purple">Partnr Software · SI Focus</div>
+        <h3>The Systems Integrator</h3>
+        <p>You run a consulting practice on AWS, Azure, or GCP. Managing partner tier progression, practice competencies, MAP engagements, and PSF/DAF funding is a full-time job on its own.</p>
+        <div class="persona-wins">
+          <div class="persona-win">Track consulting partner tier and what's needed to advance</div>
+          <div class="persona-win">Manage practice competency applications and requirements checklists</div>
+          <div class="persona-win">Log MAP, PSF, and DAF programs with funding amounts and deadlines</div>
+          <div class="persona-win">PDM relationship health and co-sell activity logging</div>
+          <div class="persona-win">Benefits Intelligence surfaces SI-specific funding gaps</div>
         </div>
       </div>
       <div class="persona">
-        <div class="persona-role">Executive Audience</div>
+        <div class="persona-role">Partnr Software</div>
         <h3>CRO / VP of Partnerships</h3>
         <p>You need to know which cloud partnerships are healthy, which are at risk, and whether your team is maximizing the value of every program you've invested in.</p>
         <div class="persona-wins">
@@ -394,44 +728,44 @@
           <div class="persona-win">Build / Market / Sell breakdown for any stakeholder</div>
         </div>
       </div>
+      <div class="persona" style="border-color:rgba(212,145,58,0.2);background:linear-gradient(135deg,rgba(212,145,58,0.04) 0%,var(--navy-mid) 60%)">
+        <div class="persona-role amber">Partnr Plus · Pro Services</div>
+        <h3>The Team That Needs to Move Faster</h3>
+        <p>You're new to cloud partnerships, overloaded, or watching a deadline approach. Partnr Plus brings in certified experts to execute the work your team can't get to.</p>
+        <div class="persona-wins">
+          <div class="persona-win">Partnership built correctly from day one — ISV or SI</div>
+          <div class="persona-win">Co-sell motion live before your PDM moves on</div>
+          <div class="persona-win">Unclaimed MDF, PSF, and DAF identified and filed</div>
+          <div class="persona-win">Everything tracked in Partnr from session one</div>
+        </div>
+      </div>
     </div>
   </section>
 
   <hr class="divider" />
 
-  <section>
-    <p class="section-label">Features</p>
-    <h2>Everything a partner CRM <em>should</em> have.</h2>
-    <p class="section-sub">The features that alliance managers actually need — not a sales CRM retrofitted for partnerships.</p>
-    <div class="features">
-      <div class="feature"><div class="feature-icon">📊</div><h4>Program Tracking</h4><p>Programs with full lifecycle stages, milestone checklists, owners, and target dates. Like opportunities, but for partnership maturity.</p></div>
-      <div class="feature"><div class="feature-icon">🧠</div><h4>AI Snapshot Reports</h4><p>Auto-generated weekly briefings covering program progress, credits secured, and attributed pipeline. Ready for leadership every Friday.</p></div>
-      <div class="feature"><div class="feature-icon">⚠️</div><h4>Stall Detection</h4><p>AI-powered alerts when programs haven't moved in 14+ days, with specific next steps and who to contact.</p></div>
-      <div class="feature"><div class="feature-icon">📈</div><h4>AHI Scoring</h4><p>Alliance Health Index scores every partnership across velocity, revenue attribution, risk signals, and certification milestones.</p></div>
-      <div class="feature"><div class="feature-icon">🎯</div><h4>Benefits Intelligence</h4><p>Know what you've earned but haven't claimed. MDF wallets, co-sell activations, expiring credits — surfaced with the exact action and dollar value at stake.</p></div>
-      <div class="feature"><div class="feature-icon">📥</div><h4>CSV Import</h4><p>Import your existing partner data from spreadsheets with AI-assisted column mapping. Live in 5 minutes.</p></div>
-    </div>
-  </section>
-
-  <hr class="divider" />
-
+  <!-- ICP -->
   <section>
     <p class="section-label">Ideal Fit</p>
     <h2>Is Partnr right for <em>you?</em></h2>
     <div class="icp-grid">
-      <div class="icp-item"><div class="icp-icon">☁️</div><h4>Cloud Partnerships</h4><p>Active AWS, Azure, or GCP partner programs — from first certification to co-sell at scale.</p></div>
+      <div class="icp-item"><div class="icp-icon">☁️</div><h4>Cloud Partnerships</h4><p>Active or building toward AWS, Azure, or GCP partner programs — ISV, SI, or consulting firm.</p></div>
+      <div class="icp-item"><div class="icp-icon">🏗️</div><h4>ISVs and SIs</h4><p>Whether you sell software or deliver services, cloud partnership programs apply to you — and Partnr tracks both.</p></div>
       <div class="icp-item"><div class="icp-icon">📋</div><h4>Beyond the Spreadsheet</h4><p>You're tracking partner programs in Excel or Notion and know there's a better way.</p></div>
       <div class="icp-item"><div class="icp-icon">🔍</div><h4>Pre-Revenue Visibility</h4><p>You need to demonstrate partnership value to leadership before deals close.</p></div>
-      <div class="icp-item"><div class="icp-icon">🚀</div><h4>Any Stage</h4><p>From your first alliance hire to a full partnerships org — Partnr scales with your team.</p></div>
-      <div class="icp-item"><div class="icp-icon">🤝</div><h4>Any Team Size</h4><p>Solo alliance manager or a team of ten — every user gets their own view, admins see everything.</p></div>
+      <div class="icp-item"><div class="icp-icon">🚀</div><h4>Moving Fast</h4><p>Partnership revenue goals with a timeline — and not enough time to figure it out alone.</p></div>
       <div class="icp-item"><div class="icp-icon">📣</div><h4>Leadership Reporting</h4><p>You need to show your work to a CRO or CEO who only thinks in pipeline and revenue.</p></div>
     </div>
   </section>
 
-  <div class="cta-section">
+  <!-- CTA -->
+  <div class="cta-section" id="cta-bottom">
     <h2>Your partnerships, finally visible.</h2>
-    <p>Join alliance managers who use Partnr to track what actually drives partnership revenue — and claim every dollar they've earned.</p>
-    <button type="button" class="btn-primary" data-action="request-access" style="font-size:1.1rem;padding:1rem 2.5rem;">Request access →</button>
+    <p>Join alliance managers and SI practices who use Partnr to track what actually drives cloud partnership revenue — and get expert help when you need to move faster.</p>
+    <div class="cta-buttons">
+      <button type="button" class="btn-primary" data-action="request-access" style="font-size:1.1rem;padding:1rem 2.5rem;">Request software access →</button>
+      <a href="mailto:hello@getpartnr.co?subject=Partnr Plus Inquiry" class="btn-outline" style="font-size:1.1rem;padding:1rem 2.5rem;">Explore Partnr Plus →</a>
+    </div>
   </div>
 
   <footer>
@@ -440,15 +774,16 @@
         <rect width="20" height="20" rx="4" fill="#0F172A"/>
         <polyline points="2,10 5,10 7,4 10,16 13,7 15,10 18,10" stroke="#2E75FF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       </svg>
-      <span>© 2026 Partnr · <a href="mailto:hello@getpartnr.co">hello@getpartnr.co</a></span>
+      <span>© 2026 Partnr LLC · <a href="mailto:hello@getpartnr.co">hello@getpartnr.co</a></span>
     </div>
     <div style="display:flex;gap:1.5rem;">
       <a href="https://app.getpartnr.co/login">Sign in</a>
+      <a href="#partnr-plus">Partnr Plus</a>
       <a href="mailto:hello@getpartnr.co">Contact</a>
     </div>
   </footer>
 
-  <!-- Request Access Modal -->
+  <!-- Modal -->
   <div class="modal-overlay" id="requestAccessModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-content">
       <button type="button" class="modal-close-x" data-action="close-modal" aria-label="Close">✕</button>
@@ -457,17 +792,18 @@
         <h2 id="modalTitle">Request <em>access.</em></h2>
         <p>Partnr is currently invite-only. Tell us about your partnership work and we'll be in touch within 48 hours if there's a fit.</p>
         <form id="requestAccessForm" novalidate>
+          <div class="form-row"><label for="ra-name">Your name *</label><input type="text" id="ra-name" name="name" required autocomplete="name" /></div>
+          <div class="form-row"><label for="ra-email">Work email *</label><input type="email" id="ra-email" name="email" required autocomplete="email" /></div>
+          <div class="form-row"><label for="ra-company">Company</label><input type="text" id="ra-company" name="company" autocomplete="organization" /></div>
           <div class="form-row">
-            <label for="ra-name">Your name *</label>
-            <input type="text" id="ra-name" name="name" required autocomplete="name" />
-          </div>
-          <div class="form-row">
-            <label for="ra-email">Work email *</label>
-            <input type="email" id="ra-email" name="email" required autocomplete="email" />
-          </div>
-          <div class="form-row">
-            <label for="ra-company">Company</label>
-            <input type="text" id="ra-company" name="company" autocomplete="organization" />
+            <label for="ra-type">How do you go to market?</label>
+            <select id="ra-type" name="partnerType">
+              <option value="">Select one...</option>
+              <option value="ISV">ISV / SaaS product</option>
+              <option value="SI">Systems Integrator / Consulting</option>
+              <option value="Both">Both ISV and SI</option>
+              <option value="Other">Other</option>
+            </select>
           </div>
           <div class="form-row">
             <label for="ra-cloud">Primary cloud partnership</label>
@@ -480,10 +816,7 @@
               <option value="Exploring">Exploring partnerships</option>
             </select>
           </div>
-          <div class="form-row">
-            <label for="ra-reason">What are you trying to solve? (optional)</label>
-            <textarea id="ra-reason" name="reason" rows="3" placeholder="A few sentences on your current setup or pain points..."></textarea>
-          </div>
+          <div class="form-row"><label for="ra-reason">What are you trying to solve? (optional)</label><textarea id="ra-reason" name="reason" rows="3" placeholder="A few sentences on your current setup or pain points..."></textarea></div>
           <div id="ra-error" class="form-error" style="display:none;"></div>
           <button type="submit" class="btn-primary">Submit request →</button>
           <p class="form-helper">No demo spam. We'll only reach out if there's a real fit.</p>
@@ -499,6 +832,22 @@
   </div>
 
   <script>
+    // Tab switching
+    function switchTab(tab) {
+      document.querySelectorAll('.mode-tab').forEach(function(t) {
+        t.classList.toggle('active', t.dataset.tab === tab);
+      });
+      document.querySelectorAll('.tab-panel').forEach(function(p) {
+        p.classList.toggle('active', p.id === 'panel-' + tab);
+      });
+      if (tab === 'plus') {
+        setTimeout(function() {
+          document.getElementById('panel-plus').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      }
+    }
+
+    // Modal
     (function() {
       var modal = document.getElementById('requestAccessModal');
       var form = document.getElementById('requestAccessForm');
@@ -510,12 +859,8 @@
       function openModal() {
         modal.classList.add('is-open');
         document.body.style.overflow = 'hidden';
-        setTimeout(function() {
-          var firstInput = form.querySelector('input');
-          if (firstInput) firstInput.focus();
-        }, 100);
+        setTimeout(function() { var f = form.querySelector('input'); if (f) f.focus(); }, 100);
       }
-
       function closeModal() {
         modal.classList.remove('is-open');
         document.body.style.overflow = '';
@@ -530,61 +875,26 @@
       }
 
       document.querySelectorAll('[data-action="request-access"]').forEach(function(btn) {
-        btn.addEventListener('click', function(e) {
-          e.preventDefault();
-          openModal();
-        });
+        btn.addEventListener('click', function(e) { e.preventDefault(); openModal(); });
       });
-
       document.querySelectorAll('[data-action="close-modal"]').forEach(function(btn) {
         btn.addEventListener('click', closeModal);
       });
-
-      modal.addEventListener('click', function(e) {
-        if (e.target === modal) closeModal();
-      });
-
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
-      });
+      modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
 
       form.addEventListener('submit', async function(e) {
         e.preventDefault();
         errorEl.style.display = 'none';
-
         var name = form.name.value.trim();
         var email = form.email.value.trim();
-
-        if (!name || !email) {
-          errorEl.textContent = 'Name and email are required.';
-          errorEl.style.display = 'block';
-          return;
-        }
-
+        if (!name || !email) { errorEl.textContent = 'Name and email are required.'; errorEl.style.display = 'block'; return; }
         submitBtn.disabled = true;
         submitBtn.innerHTML = 'Submitting...';
-
-        var payload = {
-          name: name,
-          email: email,
-          company: form.company.value.trim(),
-          cloudPartnerships: form.cloudPartnerships.value,
-          reason: form.reason.value.trim()
-        };
-
+        var payload = { name, email, company: form.company.value.trim(), cloudPartnerships: form.cloudPartnerships.value, reason: form.reason.value.trim() };
         try {
-          var res = await fetch('https://app.getpartnr.co/api/waitlist', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-
-          if (!res.ok) {
-            var data = {};
-            try { data = await res.json(); } catch (_) {}
-            throw new Error(data.error || 'Request failed (' + res.status + ')');
-          }
-
+          var res = await fetch('https://app.getpartnr.co/api/waitlist', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+          if (!res.ok) { var d = {}; try { d = await res.json(); } catch (_) {} throw new Error(d.error || 'Request failed (' + res.status + ')'); }
           formWrap.style.display = 'none';
           successWrap.classList.add('is-visible');
         } catch (err) {
@@ -592,11 +902,9 @@
           submitBtn.innerHTML = 'Submit request →';
           errorEl.textContent = 'Something went wrong. Please email hello@getpartnr.co directly.';
           errorEl.style.display = 'block';
-          console.error('Waitlist submission error:', err);
         }
       });
     })();
   </script>
-
 </body>
 </html>
