@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Partnr — Turn your AWS partnership into revenue</title>
-<meta name="description" content="Partnr tracks the certifications, programs, funding, and co-sell work that drive cloud partnership revenue — and shows you exactly what to do next. Take the free 10-minute diagnostic.">
+<title>Partnr — See what your AWS partnership is leaving on the table</title>
+<meta name="description" content="AWS lists you in days — but the revenue is in co-sell, funding, and competencies. Partnr scores where you stand, shows what you're missing, and runs the work to fix it. Take the free 5-minute diagnostic.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -105,7 +105,7 @@ nav{
   margin:24px 0 20px;color:var(--navy);
 }
 .hero h1 .acc{color:var(--blue)}
-.hero .sub{font-size:18.5px;line-height:1.65;color:var(--text-2);max-width:530px;margin-bottom:32px}
+.hero .sub{font-size:18.5px;line-height:1.65;color:var(--text-2);max-width:545px;margin-bottom:30px}
 .hero .sub strong{color:var(--text);font-weight:600}
 .hero-cta-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .hero-fine{margin-top:20px;font-size:13.5px;color:var(--text-3);display:flex;align-items:center;gap:8px}
@@ -134,6 +134,17 @@ nav{
 .fm-tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:5px;margin-top:5px}
 .tag-expire{background:rgba(248,113,113,0.18);color:#fca5a5}
 .tag-ready{background:rgba(74,222,128,0.16);color:#86efac}
+
+/* hero score-card bars (inline-friendly) */
+.hsc-bar{margin:10px 0}
+.hsc-bar .bl{display:flex;justify-content:space-between;font-size:12.5px;color:rgba(255,255,255,0.7);margin-bottom:6px}
+.hsc-bar .bl .v{font-family:var(--mono);font-weight:600}
+.hsc-track{height:6px;background:rgba(255,255,255,0.1);border-radius:100px;overflow:hidden}
+.hsc-fill{height:100%;border-radius:100px;background:#4ade80}
+.hsc-found{margin-top:18px;padding:14px;background:rgba(46,117,255,0.14);border:1px solid rgba(46,117,255,0.3);border-radius:11px}
+.hsc-found .fl{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7eb1ff;margin-bottom:5px}
+.hsc-found .ft{font-size:13.5px;color:#fff;line-height:1.45}
+.hsc-found .ft b{color:#fca5a5;font-weight:600}
 
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:42px}.hero{padding:56px 0 40px}}
 
@@ -293,49 +304,45 @@ footer{border-top:1px solid var(--line);padding:40px 0;background:var(--card)}
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow reveal" style="--i:0"><span class="pulse"></span>Free 10-minute diagnostic</span>
-      <h1 class="reveal" style="--i:1">Turn your AWS partnership into <span class="acc">revenue.</span></h1>
-      <p class="sub reveal" style="--i:2">If you sell software or services through AWS, there's real money on the table — funding you've earned, deals that could be routed to you. <strong>Partnr tracks the work that unlocks it and tells you exactly what to do next.</strong></p>
+      <span class="eyebrow reveal" style="--i:0"><span class="pulse"></span>Free score · No account · 5 minutes</span>
+      <h1 class="reveal" style="--i:1">You're probably leaving AWS money <span class="acc">on the table. See how much in 5 minutes.</span></h1>
+      <p class="sub reveal" style="--i:2">AWS now lists you in days — but listing was never the hard part. The revenue is in co-sell, funding, and competencies, and most teams are quietly losing it. <strong>Partnr scores exactly where you stand, shows what you're missing, and runs the work to fix it.</strong></p>
       <div class="hero-cta-row reveal" style="--i:3">
-        <a class="btn-primary" href="https://app.getpartnr.co/diagnostic">Score your partnership free <span class="arr">→</span></a>
+        <a class="btn-primary" href="https://app.getpartnr.co/diagnostic">Score my partnership free <span class="arr">→</span></a>
         <a href="#platform" class="btn-ghost">See how it works</a>
       </div>
-      <div class="hero-fine reveal" style="--i:4"><span class="tick">✓</span> 10 minutes · No account needed · Built for ISVs & SIs</div>
+      <div class="hero-fine reveal" style="--i:4"><span class="tick">✓</span> Built for ISVs &amp; SIs getting serious about AWS · No sales call to get your score</div>
     </div>
 
     <div class="reveal" style="--i:3">
       <div class="fm-card">
         <div class="fm-head">
-          <span class="label">Benefits Intelligence · AWS</span>
+          <span class="label">Your AWS partnership · scored</span>
           <span class="live"><span class="d"></span>Live</span>
         </div>
-        <div class="fm-total"><span class="cur">$</span>61,000</div>
-        <div class="fm-total-label">earned but unclaimed across this partnership</div>
-        <div class="fm-row">
-          <div class="fm-ico">⏰</div>
-          <div class="body">
-            <div class="t">$24,000 MDF expiring in 38 days</div>
-            <div class="d">Wallets expire Dec 31 with no carryover. Claims close Nov 15.</div>
-            <span class="fm-tag tag-expire">Act now</span>
+        <div class="fm-total" style="display:flex;align-items:flex-end;gap:13px">84<span class="mono" style="font-size:13px;color:#86efac;font-weight:600;padding-bottom:9px">Grade A</span></div>
+        <div class="fm-total-label">Alliance Health Index · trending up over 30 days</div>
+        <div style="margin-top:6px">
+          <div class="hsc-bar">
+            <div class="bl">Co-Sell Readiness <span class="v" style="color:#fca5a5">78</span></div>
+            <div class="hsc-track"><div class="hsc-fill" style="width:78%"></div></div>
           </div>
-          <div class="amt">$24,000</div>
+          <div class="hsc-bar">
+            <div class="bl">Funding Captured <span class="v" style="color:#7eb1ff">82</span></div>
+            <div class="hsc-track"><div class="hsc-fill" style="width:82%"></div></div>
+          </div>
+          <div class="hsc-bar">
+            <div class="bl">Certifications <span class="v" style="color:#7eb1ff">85</span></div>
+            <div class="hsc-track"><div class="hsc-fill" style="width:85%"></div></div>
+          </div>
+          <div class="hsc-bar">
+            <div class="bl">Program Velocity <span class="v" style="color:#7eb1ff">91</span></div>
+            <div class="hsc-track"><div class="hsc-fill" style="width:91%"></div></div>
+          </div>
         </div>
-        <div class="fm-row">
-          <div class="fm-ico">🔓</div>
-          <div class="body">
-            <div class="t">PSF available — not yet claimed</div>
-            <div class="d">Eligible for Partner Success Funds on qualifying engagements.</div>
-            <span class="fm-tag tag-ready">Ready</span>
-          </div>
-          <div class="amt">$28,000</div>
-        </div>
-        <div class="fm-row">
-          <div class="fm-ico">🔑</div>
-          <div class="body">
-            <div class="t">One step from co-sell eligible</div>
-            <div class="d">A single gap is blocking AWS sellers from routing deals to you.</div>
-          </div>
-          <div class="amt">$9,000</div>
+        <div class="hsc-found">
+          <div class="fl">What it found</div>
+          <div class="ft"><b>$24,000 in MDF expires in 38 days.</b> One gap is blocking AWS sellers from routing deals to you — here's how to clear it.</div>
         </div>
       </div>
     </div>
@@ -403,7 +410,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;background:var(--card)}
         <div class="ico">🧭</div>
         <h3>AI Coaching</h3>
         <p>When the platform spots a gap, it doesn't just flag it — it tells you what to do next, built from your actual partnership data.</p>
-        <ul><li>A prioritized next move for every partner</li><li>10-minute diagnostic with a 90-day roadmap</li><li>Roadmap converts to tracked programs in one click</li></ul>
+        <ul><li>A prioritized next move for every partner</li><li>5-minute diagnostic with a 90-day roadmap</li><li>Roadmap converts to tracked programs in one click</li></ul>
       </div>
       <div class="fcard reveal">
         <div class="ico">📊</div>
@@ -528,7 +535,7 @@ footer{border-top:1px solid var(--line);padding:40px 0;background:var(--card)}
   <div class="wrap">
     <div class="final-card reveal">
       <h2>Find out what your AWS partnership is <span class="acc">leaving on the table.</span></h2>
-      <p>The free diagnostic scores your partnership across 6 dimensions in 10 minutes — and shows you the gaps, the unclaimed money, and a 90-day plan to fix it.</p>
+      <p>The free diagnostic scores your partnership across 6 dimensions in 5 minutes — and shows you the gaps, the unclaimed money, and a 90-day plan to fix it.</p>
       <div class="final-row">
         <a class="btn-primary" href="https://app.getpartnr.co/diagnostic">Take the free diagnostic <span class="arr">→</span></a>
         <button class="btn-ghost" onclick="openModal()">Request platform access</button>
