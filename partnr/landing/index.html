@@ -136,7 +136,7 @@ nav{
 .tag-ready{background:rgba(74,222,128,0.16);color:#86efac}
 
 /* hero score-card bars (inline-friendly) */
-.hsc-bar{margin:10px 0}
+.hsc-bar{margin:9px 0}
 .hsc-bar .bl{display:flex;justify-content:space-between;font-size:12.5px;color:rgba(255,255,255,0.7);margin-bottom:6px}
 .hsc-bar .bl .v{font-family:var(--mono);font-weight:600}
 .hsc-track{height:6px;background:rgba(255,255,255,0.1);border-radius:100px;overflow:hidden}
@@ -145,6 +145,29 @@ nav{
 .hsc-found .fl{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7eb1ff;margin-bottom:5px}
 .hsc-found .ft{font-size:13.5px;color:#fff;line-height:1.45}
 .hsc-found .ft b{color:#fca5a5;font-weight:600}
+
+/* hero: two-offering cards */
+.offer-row{display:flex;gap:12px;margin-bottom:26px;max-width:548px}
+.offer{flex:1;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 15px}
+.offer .ot{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px;display:flex;align-items:center;gap:7px}
+.offer .ot .oi{font-size:14px}
+.offer .od{font-size:12.5px;color:var(--text-2);line-height:1.4}
+@media(max-width:520px){.offer-row{flex-direction:column}}
+
+/* hero card: cloud chips */
+.clouds{display:flex;gap:6px;margin-bottom:15px}
+.cloud-chip{font-family:var(--mono);font-size:10px;letter-spacing:.06em;padding:3px 9px;border-radius:6px;background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.6)}
+.cloud-chip.active{background:rgba(46,117,255,0.2);color:#9cc2ff;border:1px solid rgba(46,117,255,0.4)}
+
+/* hero card: Partnr Plus box */
+.plus-box{margin-top:18px;padding:15px;background:rgba(46,117,255,0.12);border:1px solid rgba(46,117,255,0.3);border-radius:13px}
+.plus-label{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#7eb1ff;margin-bottom:11px}
+.plus-label .dot{width:6px;height:6px;border-radius:50%;background:#7eb1ff}
+.plus-item{display:flex;align-items:flex-start;gap:10px;padding:6px 0}
+.plus-item .ck{width:18px;height:18px;border-radius:50%;background:rgba(74,222,128,0.18);color:#86efac;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.plus-item .pt{font-size:13px;color:#fff;line-height:1.4}
+.plus-item .pt b{color:#fff;font-weight:600}
+.plus-item .pt span{color:rgba(255,255,255,0.5)}
 
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:42px}.hero{padding:56px 0 40px}}
 
@@ -304,25 +327,40 @@ footer{border-top:1px solid var(--line);padding:40px 0;background:var(--card)}
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow reveal" style="--i:0"><span class="pulse"></span>Free score · No account · 5 minutes</span>
-      <h1 class="reveal" style="--i:1">You're probably leaving AWS money <span class="acc">on the table. See how much in 5 minutes.</span></h1>
-      <p class="sub reveal" style="--i:2">AWS now lists you in days — but listing was never the hard part. The revenue is in co-sell, funding, and competencies, and most teams are quietly losing it. <strong>Partnr scores exactly where you stand, shows what you're missing, and runs the work to fix it.</strong></p>
-      <div class="hero-cta-row reveal" style="--i:3">
-        <a class="btn-primary" href="https://app.getpartnr.co/diagnostic">Score my partnership free <span class="arr">→</span></a>
+      <span class="eyebrow reveal" style="--i:0"><span class="pulse"></span>Software + certified cloud-alliance experts</span>
+      <h1 class="reveal" style="--i:1">AWS, Azure, and GCP now grade your partner program. <span class="acc">Partnr's experts close the gaps.</span></h1>
+      <p class="sub reveal" style="--i:2">The clouds are racing to score your deals and flag what's missing. But a score doesn't write your co-sell story, claim your expiring funding, or build your competency package. <strong>Partnr is the platform that tracks your whole partnership across every cloud — and the experts who do the work the scores only recommend.</strong></p>
+      <div class="offer-row reveal" style="--i:3">
+        <div class="offer">
+          <div class="ot"><span class="oi">📊</span>Partnr</div>
+          <div class="od">The platform. One system of record for every cloud partnership, scored daily.</div>
+        </div>
+        <div class="offer">
+          <div class="ot"><span class="oi">🤝</span>Partnr Plus</div>
+          <div class="od">The experts. Certified alliance pros who do the hands-on work, tracked inside Partnr.</div>
+        </div>
+      </div>
+      <div class="hero-cta-row reveal" style="--i:4">
+        <a class="btn-primary" href="https://app.getpartnr.co/diagnostic">Score your partnership free <span class="arr">→</span></a>
         <a href="#platform" class="btn-ghost">See how it works</a>
       </div>
-      <div class="hero-fine reveal" style="--i:4"><span class="tick">✓</span> Built for ISVs &amp; SIs getting serious about AWS · No sales call to get your score</div>
+      <div class="hero-fine reveal" style="--i:5"><span class="tick">✓</span> Free 5-minute diagnostic · No account needed · Built for ISVs &amp; SIs</div>
     </div>
 
     <div class="reveal" style="--i:3">
       <div class="fm-card">
         <div class="fm-head">
-          <span class="label">Your AWS partnership · scored</span>
+          <span class="label">Your cloud partnerships</span>
           <span class="live"><span class="d"></span>Live</span>
+        </div>
+        <div class="clouds">
+          <span class="cloud-chip active">AWS</span>
+          <span class="cloud-chip">Azure</span>
+          <span class="cloud-chip">GCP</span>
         </div>
         <div class="fm-total" style="display:flex;align-items:flex-end;gap:13px">84<span class="mono" style="font-size:13px;color:#86efac;font-weight:600;padding-bottom:9px">Grade A</span></div>
         <div class="fm-total-label">Alliance Health Index · trending up over 30 days</div>
-        <div style="margin-top:6px">
+        <div style="margin-top:4px">
           <div class="hsc-bar">
             <div class="bl">Co-Sell Readiness <span class="v" style="color:#fca5a5">78</span></div>
             <div class="hsc-track"><div class="hsc-fill" style="width:78%"></div></div>
@@ -335,14 +373,12 @@ footer{border-top:1px solid var(--line);padding:40px 0;background:var(--card)}
             <div class="bl">Certifications <span class="v" style="color:#7eb1ff">85</span></div>
             <div class="hsc-track"><div class="hsc-fill" style="width:85%"></div></div>
           </div>
-          <div class="hsc-bar">
-            <div class="bl">Program Velocity <span class="v" style="color:#7eb1ff">91</span></div>
-            <div class="hsc-track"><div class="hsc-fill" style="width:91%"></div></div>
-          </div>
         </div>
-        <div class="hsc-found">
-          <div class="fl">What it found</div>
-          <div class="ft"><b>$24,000 in MDF expires in 38 days.</b> One gap is blocking AWS sellers from routing deals to you — here's how to clear it.</div>
+        <div class="plus-box">
+          <div class="plus-label"><span class="dot"></span>Partnr Plus · handled for you</div>
+          <div class="plus-item"><span class="ck">✓</span><div class="pt"><b>Co-sell story</b> <span>— drafted by your alliance expert</span></div></div>
+          <div class="plus-item"><span class="ck">✓</span><div class="pt"><b>$24K in funding</b> <span>— claimed before it expired</span></div></div>
+          <div class="plus-item"><span class="ck">✓</span><div class="pt"><b>Co-sell motion</b> <span>— unblocked and live with your PDM</span></div></div>
         </div>
       </div>
     </div>
@@ -500,8 +536,8 @@ footer{border-top:1px solid var(--line);padding:40px 0;background:var(--card)}
   <div class="wrap sec">
     <div class="plus-head reveal">
       <div class="sec-label">Partnr Plus · Professional services</div>
-      <h2 style="margin:0 auto">When a gap needs an expert, we bring one in.</h2>
-      <p class="lede" style="margin:16px auto 0">The platform shows you what's wrong and what to prioritize. Partnr Plus brings in certified AWS alliance experts to do the hands-on work your team can't get to — three structured sessions, everything tracked inside Partnr.</p>
+      <h2 style="margin:0 auto">The clouds tell you what's wrong. We do the work to fix it.</h2>
+      <p class="lede" style="margin:16px auto 0">AWS, Azure, and GCP can score your partnership and flag the gaps — but they won't write your co-sell story, file your funding claim, or build your competency package. Partnr Plus brings in certified alliance experts to do the hands-on work your team can't get to — three structured sessions, everything tracked inside Partnr.</p>
     </div>
     <div class="plus-steps">
       <div class="pstep reveal">
